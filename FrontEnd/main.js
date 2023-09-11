@@ -4,17 +4,9 @@ fetch (url)
 .then (function (response){
     return response.json()
 })
-.then (function (data){//pour créer les balises figures dans le html
-            {
-    let divConteneurCategories =document.getElementById("filtres");
-        let divFiltre;
-            for (let index = 0; index < 4; index++) {
-                divFiltre = document.createElement("div");
-                divFiltre.setAttribute('class', 'categorie');
-                divConteneurCategories.appendChild(divFiltre);
-                console.log(divFiltre);
-            };
-        }
+.then (function (data){
+    
+//pour créer les balises figures dans le html
     let conteneurParent = document.getElementById("gallery");
     let conteneurPhoto;
     let imageGallerie;
@@ -53,7 +45,17 @@ window.onload=function (){
         return contenuFiltres;
     }
 
-}*/
+}
+ {
+    let divConteneurCategories =document.getElementById("filtres");
+        let divFiltre;
+            for (let index = 0; index < 4; index++) {
+                divFiltre = document.createElement("div");
+                divFiltre.setAttribute('class', 'categorie');
+                divConteneurCategories.appendChild(divFiltre);
+                console.log(divFiltre);
+            };
+        }*/
 
 /*let conteneurParent = document.getElementById("gallery");
 let divConteneurCategories;

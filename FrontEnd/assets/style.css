@@ -125,6 +125,17 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+/*style des filtres*/
+#filtres {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 3.5em;
+	margin-top: 3em;
+	margin-left: 21%;
+	margin-right: 19%;
+	justify-content: space-evenly;
+
+}
 .categorie {
 	border: 1px solid #1D6154;
 	border-radius: 60px;
@@ -137,6 +148,11 @@ li:hover {
 	line-height: 19.2px;
 	text-align: center;
 	color: #1D6154;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-left: 17px;
+	padding-right: 17px;
 }
 .gallery {
 	width: 100%;

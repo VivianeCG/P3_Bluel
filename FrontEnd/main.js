@@ -5,7 +5,29 @@ fetch (url)
     return response.json()
 })
 .then (function (data){
+//pour rendre les filtres opérationnels
+    let valeursDeSet;
+    //valeursDeSet = document.querySelectorAll("button")
+    //valeursDeSet = document.querySelectorAll(".categorie");
+    let categorieTous;
+    categorieTous = document.getElementById("categorieIdTous");
+    let categorieObjets;
+    categorieObjets = document.getElementById("categorieId-1");
+    let categorieAppartements;
+    categorieAppartements = document.getElementById("categorieId-2");
+    let categorieHotelsEtRestaurants;
+    categorieHotelsEtRestaurants = document.getElementById("categorieId-3");
+    valeursDeSet = ["categorieTous", "categorieObjets", "categorieAppartements", "categorieHotelsEtRestaurants"]
+    valeursDeSet.addEventListener('click', ()=>{
+        valeursDeSet.setAttribute('backaground-color', '#1D6154');
+    });
     
+    valeursDeSet = new Set(data);
+        data.forEach(element => {
+            valeursDeSet = element.categorieId;
+            console.log(element)
+        })
+
 //pour créer les balises figures dans le html
     let conteneurParent = document.getElementById("gallery");
     let conteneurPhoto;

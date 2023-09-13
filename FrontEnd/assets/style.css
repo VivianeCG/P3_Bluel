@@ -151,8 +151,13 @@ li:hover {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding-left: 17px;
-	padding-right: 17px;
+	padding-left: 10px;
+	padding-right: 8px;
+	background-color: white;
+}
+button :hover{
+	color: white;
+	background-color: #1D6154;
 }
 .gallery {
 	width: 100%;

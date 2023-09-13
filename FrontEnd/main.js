@@ -7,8 +7,9 @@ fetch (url)
 .then (function (data){
 //pour rendre les filtres opérationnels
     let valeursDeSet;
-    //valeursDeSet = document.querySelectorAll("button")
-    //valeursDeSet = document.querySelectorAll(".categorie");
+            //valeursDeSet = document.querySelectorAll("button")
+            //valeursDeSet = document.querySelectorAll(".categorie");
+    //pour récupérer les valeurs de chaque categorie
     let categorieTous;
     categorieTous = document.getElementById("categorieIdTous");
     let categorieObjets;
@@ -17,11 +18,13 @@ fetch (url)
     categorieAppartements = document.getElementById("categorieId-2");
     let categorieHotelsEtRestaurants;
     categorieHotelsEtRestaurants = document.getElementById("categorieId-3");
+    //pour réunir les valeurs des catégories dans un seul endroit
     valeursDeSet = ["categorieTous", "categorieObjets", "categorieAppartements", "categorieHotelsEtRestaurants"]
+    //pour tenter d'avoir une mise en forme différente au clic sur le bouton
     valeursDeSet.addEventListener('click', ()=>{
         valeursDeSet.setAttribute('backaground-color', '#1D6154');
     });
-    
+    //pour tenter d'avoir un filtrage 
     valeursDeSet = new Set(data);
         data.forEach(element => {
             valeursDeSet = element.categorieId;

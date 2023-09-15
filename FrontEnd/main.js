@@ -1,20 +1,18 @@
 const url = "http://localhost:5678/api/works"
 //fonction pour créer les balises figure dans le HTML
 
-let conteneurParent = document.getElementById("gallery");
-let conteneurPhoto;
-let imageGallerie;
-let legendePhoto;
-function creationConteneurPhoto() {
-    conteneurPhoto = document.createElement("figure");
-    imageGallerie = document.createElement("img");
+window.onload=function creationFigure() {
+    let conteneurParent = document.getElementById("gallery");
+    let conteneurPhoto = document.createElement("figure");
+    let imageGallerie = document.createElement("img");
+    let legendePhoto = document.createElement("figcaption");
+    legendePhoto.innerText="legende photo";
     conteneurParent.appendChild(conteneurPhoto);
-    legendePhoto = document.createElement("figcaption");
     conteneurPhoto.appendChild(imageGallerie);
+    conteneurPhoto.appendChild(legendePhoto);
     imageGallerie.setAttribute("src","");
     imageGallerie.setAttribute("alt","");
-    conteneurPhoto.appendChild(legendePhoto);
-    console.log();
+    //return conteneurPhoto;
 }
 
 /**pour récupérer les travaux depuis le Backend*/
@@ -25,7 +23,7 @@ fetch (url)
 .then (function (data){
 //pour créer les balises figures dans le html
 data.forEach(element => {
-        creationConteneurPhoto()
+        creationFigure()
         imageGallerie.src = element.imageUrl;
         imageGallerie.alt = element.title;
         legendePhoto.innerHTML = element.title; 

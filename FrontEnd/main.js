@@ -36,7 +36,7 @@ function creationFiltres() {
     .then (function (data) {
         let numeroId = 1;
         data.forEach(element=> {
-            //pour créer les boutons des filtres avec leurs noms (sauf "Tous")
+            //pour créer les boutons des filtres avec leurs noms et id(sauf "Tous")
             let divConteneurCategories = document.getElementById("filtres");
             let button = document.createElement("button");
             button.setAttribute('class', 'categorie');
@@ -58,11 +58,14 @@ function filtrageDesPhotos() {
         return response.json()
     })
     .then (function (data) {
-        const categorieId = categorieId.set("#categorie"+numeroId => categorieId.id);
+        //idée créer un set pour éviter des doublons??
+        //const categorieId = categorieId.set("#categorie"+numeroId => categorieId.id); //problème de syntaxe à revoir
+        //ajouter un addEventListener pour que ça marche?
+        //un switch case serait plus adapté??
         if (categorieId=categorieId.id) { //si l'id du bouton = l'id de la photo on l'affiche
             console.log(data.id)
             
-        } else {                // sinon on affiche tout
+        } else {                // sinon on affiche toutes les photos
             console.log()
         }
 

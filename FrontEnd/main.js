@@ -43,14 +43,17 @@ function creationFiltres() {
             button.innerHTML = element.name;
             console.log(button);
         })
-        let button=document.querySelectorAll('.categorie');
-        button.addEventListener('click', ()=>{ //message d'erreur disant que ce n'est pas une fonction
-            button.setAttribute('color', 'white');
-            button.setAttribute('background-color', '#1D6154');
-           console.log(button.setAttribute)
-        })
-    
+        
     });
 }
 creationFiltres()
 
+function changementBoutonAuClic(){
+    let button=document.querySelectorAll('.categorie');
+    button.addEventListener('click', ()=>{ //message d'erreur disant que ce n'est pas une fonction
+        button.setAttribute('color', 'white');
+        button.setAttribute('background-color', '#1D6154');
+       console.log()
+    })
+}
+changementBoutonAuClic()

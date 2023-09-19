@@ -35,22 +35,22 @@ function creationFiltres() {
     })
     .then (function (data) {
         data.forEach(element=> {
+            //pour créer les boutons des filtres avec leurs noms (sauf "Tous")
             let divConteneurCategories = document.getElementById("filtres");
-            button = document.createElement("button");
+            let button = document.createElement("button");
             button.setAttribute('class', 'categorie');
             divConteneurCategories.appendChild(button);
             button.innerHTML = element.name;
             console.log(button);
         })
+        let button=document.querySelectorAll('.categorie');
+        button.addEventListener('click', ()=>{ //message d'erreur disant que ce n'est pas une fonction
+            button.setAttribute('color', 'white');
+            button.setAttribute('background-color', '#1D6154');
+           console.log(button.setAttribute)
+        })
+    
     });
 }
 creationFiltres()
 
-/*const photo = ["Booki","Celeste1", "Celeste2", "Celeste3", "Celeste4"]
-for (let button of photo) {
-    button = document.createElement("button");
-    button.setAttribute('class', 'categorie');
-    button.innerHTML = photo;
-    divConteneurCategories.appendChild(button);
-    console.log(button);
-};*/

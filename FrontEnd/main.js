@@ -42,6 +42,7 @@ function creationFiltres() {
             button.setAttribute('class', 'categorie');
             button.setAttribute('id', 'categorie'+numeroId);
             numeroId++;
+            button.setAttribute('value', numeroId)
             divConteneurCategories.appendChild(button);
             button.innerHTML = element.name;
             console.log(button);
@@ -62,8 +63,8 @@ function filtrageDesPhotos() {
         //const categorieId = categorieId.set("#categorie"+numeroId => categorieId.id); //problème de syntaxe à revoir
         //ajouter un addEventListener pour que ça marche?
         //un switch case serait plus adapté??
-        if (categorieId=categorieId.id) { //si l'id du bouton = l'id de la photo on l'affiche
-            console.log(data.id)
+        if () { //si l'id du bouton = l'id de la photo on l'affiche
+            console.log()
             
         } else {                // sinon on affiche toutes les photos
             console.log()
@@ -71,13 +72,3 @@ function filtrageDesPhotos() {
 
     });
 };
-
-function changementBoutonAuClic(){
-    let button=document.querySelectorAll('.categorie');
-    button.addEventListener("mouseover", ()=>{ //message d'erreur disant que ce n'est pas une fonction
-        button.setAttribute('color', 'white');
-        button.setAttribute('background-color', '#1D6154');
-       console.log()
-    })
-}
-changementBoutonAuClic()

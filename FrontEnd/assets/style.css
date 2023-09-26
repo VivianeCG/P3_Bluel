@@ -241,6 +241,8 @@ footer nav ul {
 	color: #3D3D3D;
 	font-weight: 500;
 	font-size: 14px;
+	display: flex;
+	justify-content: center;
 }
 .log-in{
 	display: flex;

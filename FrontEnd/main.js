@@ -52,18 +52,26 @@ function creationFiltres() {
 }
 creationFiltres()
 
-function {
+function filtrageCategories(){
     const urlCategories = "http://localhost:5678/api/works";
     let button = document.querySelector(".categorie");
     for (let filtrage of button) {
-       fetch (urlCategories)
+        fetch (urlCategories)
         .then (function (response){
             return response.json()
         })
-        
-        .then (function (data) {
-        
-        }); 
+        .then (function filtrage (data) {
+            creationFiltres()
+            button.addEventListener("click", function(){
+                 if (button="1") {
+                console.log(response.json());
+                } else {
+                    filtrage(data)
+                    console.log(data.categoryId); 
+                }
+        })
+           
+        });
     }
     
 };

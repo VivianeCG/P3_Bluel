@@ -53,25 +53,37 @@ function creationFiltres() {
 creationFiltres()
 
 function filtrageCategories(){
-    const urlCategories = "http://localhost:5678/api/works";
+   const url = "http://localhost:5678/api/works";
     let button = document.querySelector(".categorie");
-    for (let filtrage of button) {
-        fetch (urlCategories)
-        .then (function (response){
-            return response.json()
-        })
-        .then (function filtrage (data) {
-            creationFiltres()
-            button.addEventListener("click", function(){
-                 if (button="1") {
-                console.log(response.json());
-                } else {
-                    filtrage(data)
-                    console.log(data.categoryId); 
-                }
-        })
-           
-        });
-    }
-    
+        for (let filtrage of button) {
+            fetch (url)
+            .then (function (response){
+                return response.json()
+            })
+            .then (function filtrage (data) {
+                if (button.value="1") {
+                        creationFiltres()
+                    } else {
+                        let numeroId = 1;
+                        data.forEach(element=> {
+                            //pour créer les boutons des filtres avec leurs noms et id(sauf "Tous")
+                            let divConteneurCategories = document.getElementById("filtres");
+                            let button = document.createElement("button");
+                            button.setAttribute('class', 'categorie');
+                            button.setAttribute('id', 'categorie'+numeroId);
+                            numeroId++;
+                            button.setAttribute('value', numeroId)
+                            divConteneurCategories.appendChild(button);
+                            button.innerHTML = element.name;
+                            console.log(button);
+                        })
+                    }
+                });
+        }
+    ;
 };
+
+let button = document.querySelector(".categorie");
+button.addEventListener("click", function(){
+    filtrageCategories()
+});

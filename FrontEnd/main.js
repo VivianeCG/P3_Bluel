@@ -53,18 +53,20 @@ function creationFiltres() {
 creationFiltres()
 
 function filtrageCategories(){
+    console.log("coucou");
    const url = "http://localhost:5678/api/works";
     let button = document.querySelector(".categorie");
         for (let filtrage of button) {
+            filtrage.addEventListener("click", ()=> {
             fetch (url)
-            .then (function (response){
-                return response.json()
-            })
-            .then (function filtrage (data) {
-                if (button.value="1") {
-                        creationFiltres()
+            .then (response=> response.json())
+            .then ((data) => {
+                if (filtrage.value==1) {
+                    console.log("salut");
+                        creationFiltres();
                     } else {
-                        let numeroId = 1;
+                        console.log("bidule");
+                        /*let numeroId = 1;
                         data.forEach(element=> {
                             //pour créer les boutons des filtres avec leurs noms et id(sauf "Tous")
                             let divConteneurCategories = document.getElementById("filtres");
@@ -76,14 +78,16 @@ function filtrageCategories(){
                             divConteneurCategories.appendChild(button);
                             button.innerHTML = element.name;
                             console.log(button);
-                        })
+                        })*/
                     }
                 });
-        }
-    ;
+                
+            });
+         }
+    
 };
 
-let button = document.querySelector(".categorie");
+/*let button = document.querySelector("#categorie0");
 button.addEventListener("click", function(){
     filtrageCategories()
-});
+});*/

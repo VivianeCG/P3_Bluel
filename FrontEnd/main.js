@@ -55,8 +55,8 @@ creationFiltres()
 function filtrageCategories(){
     console.log("coucou");
    const url = "http://localhost:5678/api/works";
-    let button = document.querySelector(".categorie");
-        for (let filtrage of button) {
+    let button = document.querySelectorAll(".categorie");
+        for (const filtrage of button) {
             filtrage.addEventListener("click", ()=> {
             fetch (url)
             .then (response=> response.json())
@@ -83,10 +83,10 @@ function filtrageCategories(){
                 });
                 
             });
-         }
+        }
     
 };
-
+filtrageCategories();
 /*let button = document.querySelector("#categorie0");
 button.addEventListener("click", function(){
     filtrageCategories()

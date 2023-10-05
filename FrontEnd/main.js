@@ -58,36 +58,37 @@ function filtrageCategories(){
     let button = document.querySelectorAll(".categorie");
         for (const filtrage of button) {
             filtrage.addEventListener("click", ()=> {
-            fetch (url)
-            .then (response=> response.json())
-            .then ((data) => {
-                if (filtrage.value==1) {
-                    console.log("salut");
-                        creationFiltres();
-                    } else {
-                        console.log("bidule");
-                        /*let numeroId = 1;
-                        data.forEach(element=> {
-                            //pour créer les boutons des filtres avec leurs noms et id(sauf "Tous")
-                            let divConteneurCategories = document.getElementById("filtres");
-                            let button = document.createElement("button");
-                            button.setAttribute('class', 'categorie');
-                            button.setAttribute('id', 'categorie'+numeroId);
-                            numeroId++;
-                            button.setAttribute('value', numeroId)
-                            divConteneurCategories.appendChild(button);
-                            button.innerHTML = element.name;
-                            console.log(button);
-                        })*/
-                    }
+                fetch (url)
+                .then (response=> response.json())
+                .then ((data) => {
+                    if (filtrage.value==1) {
+                        console.log("salut");
+                        creationFigure();
+                        } else {
+                            console.log("hola");
+                            for (element in data) {
+                                    let numeroId = 1;
+                                    let conteneurPhoto = getElementById("categorie"+numeroId);
+                                    conteneurPhoto.innerHTML =`
+                                                        <figure>
+                                                        <img src=${data[element].imageUrl} alt=${data[element].title}>
+                                                        <figcaption>${data[element].title}</figcaption>
+                                                        </figure>
+                                                        `;
+                                
+                            }
+                        }
+                            
+                    });
                 });
-                
-            });
-        }
-    
+                    
+            };   
 };
 filtrageCategories();
-/*let button = document.querySelector("#categorie0");
-button.addEventListener("click", function(){
-    filtrageCategories()
-});*/
+
+//changer la graisse des liens lorsqu'on est sur la page sélectionnée
+/*function changementGraisseLien() {
+    let lien = document.querySelectorAll(".lien");
+    lien.addEventListener("clic", function (){
+    lien.setAttribute("font-weight"= 600);})
+};*/

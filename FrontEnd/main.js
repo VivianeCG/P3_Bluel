@@ -62,13 +62,12 @@ function filtrageCategories(){
                 .then (response=> response.json())
                 .then ((data) => {
                     if (filtrage.value==1) {
-                        console.log("salut");
                         creationFigure();
+                        console.log("salut");
                         } else {
                             console.log("hola");
-                            for (element in data) {
-                                    let numeroId = 1;
-                                    let conteneurPhoto = getElementById("categorie"+numeroId);
+                            data.forEach (element =>{
+                                let conteneurPhoto = getElementById(data[element].id);
                                     conteneurPhoto.innerHTML =`
                                                         <figure>
                                                         <img src=${data[element].imageUrl} alt=${data[element].title}>
@@ -76,7 +75,7 @@ function filtrageCategories(){
                                                         </figure>
                                                         `;
                                 
-                            }
+                            })
                         }
                             
                     });

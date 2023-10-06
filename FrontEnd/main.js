@@ -1,7 +1,7 @@
 //fonction pour créer les balises figure dans le HTML et récupérer les photos
 function creationFigure() {
     const url = "http://localhost:5678/api/works";
-    /**pour récupérer les travaux depuis le Backend*/
+    //pour récupérer les travaux depuis le Backend
     fetch (url)
     .then (function (response){
         return response.json()
@@ -25,7 +25,7 @@ function creationFigure() {
             });
         });
 }
-creationFigure()
+//creationFigure()
 //fontion pour créer les boutons de filtrage selon les catégories
 function creationFiltres() {
     const urlCategories = "http://localhost:5678/api/categories";
@@ -63,18 +63,23 @@ function filtrageCategories(){
                 .then ((data) => {
                     if (filtrage.value==1) {
                         creationFigure();
-                        console.log("salut");
+                        console.log(button.value);
                         } else {
-                            console.log("hola");
+                            console.log(button.value);
+
                             data.forEach (element =>{
-                                let conteneurPhoto = getElementById(data[element].id);
-                                    conteneurPhoto.innerHTML =`
+                                if (element.categoryId==filtrage.value){
+                               
+                                let conteneurParent = document.getElementById("gallery");
+                                let conteneurPhoto ="";
+                                    conteneurPhoto.innerHTML +=`
                                                         <figure>
                                                         <img src=${data[element].imageUrl} alt=${data[element].title}>
                                                         <figcaption>${data[element].title}</figcaption>
                                                         </figure>
                                                         `;
-                                
+                                conteneurParent.appendChild(conteneurPhoto);
+                                }
                             })
                         }
                             

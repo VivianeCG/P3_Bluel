@@ -63,13 +63,12 @@ function filtrageCategories(){
                 .then ((data) => {
                     if (filtrage.value==1) {
                         creationFigure();
-                        console.log(button.value);
+                        console.log(filtrage.value);
                         } else {
-                            console.log(button.value);
+                            console.log(filtrage.value);
 
                             data.forEach (element =>{
                                 if (element.categoryId==filtrage.value){
-                               
                                 let conteneurParent = document.getElementById("gallery");
                                 let conteneurPhoto ="";
                                     conteneurPhoto.innerHTML +=`

@@ -102,6 +102,9 @@ li:hover {
 nav a {
 	text-decoration: none;
 }
+nav ul:visited{
+	font-weight: 600;
+}
 a:visited{
 	color: black;
 }

@@ -58,6 +58,8 @@ function filtrageCategories(){
     let button = document.querySelectorAll(".categorie");
         for (const filtrage of button) {
             filtrage.addEventListener("click", ()=> {
+                let conteneurParent = document.getElementById("gallery");
+                    conteneurParent="";
                 fetch (url)
                 .then (response=> response.json())
                 .then ((data) => {
@@ -66,8 +68,7 @@ function filtrageCategories(){
                         console.log(filtrage.value);
                         } else {
                             console.log(filtrage.value);
-
-                            data.forEach (element =>{
+                            for (let element of data){
                                 if (element.categoryId==filtrage.value){
                                 let conteneurParent = document.getElementById("gallery");
                                 let conteneurPhoto ="";
@@ -79,7 +80,7 @@ function filtrageCategories(){
                                                         `;
                                 conteneurParent.appendChild(conteneurPhoto);
                                 }
-                            })
+                            }
                         }
                             
                     });

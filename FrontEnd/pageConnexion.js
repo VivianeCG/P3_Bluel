@@ -1,4 +1,4 @@
-//connexion au compte
+function listenerPourRecupererIdentifiants() { //connexion au compte
 let remplissageIdentifiants = document.querySelector(".submit");
 //pour récupérer la valeur de chaque champs (e-mail et mot de passe)
 let identifiant = document.getElementById("email");
@@ -11,13 +11,16 @@ let motDePasse = document.getElementById("mot-de-passe");
         password:motDePasse.value
     };
     console.log(seConnecter);
-})
+});}
 
+const identifiantConnexion = JSON.stringify(seConnecter);
 try {
     const reponse = await fetch ("http://localhost:5678/api/users/login");
     method:"POST",
-    headers
-    body
+    headers = {"Accept": "application/json",
+                "Content-Type":"application/json"},
+    body = identifiantConnexion
+    console.log(reponse);
 } catch (error) {
-    
+    alert ('l\'identifiant ou le mot de passe est erroné');
 }

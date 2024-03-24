@@ -1,0 +1,59 @@
+function createButton() {
+  const urlCategories = "http://localhost:5678/api/categories";
+  fetch(urlCategories)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      let numeroId = 1;
+      data.forEach((element) => {
+        //pour créer les boutons des filtres avec leurs noms et id(sauf "Tous")
+        let divConteneurCategories = document.getElementById("filtres");
+        let button = document.createElement("button");
+        button.setAttribute("class", "categorie");
+        button.setAttribute("id", "categorie" + numeroId);
+        numeroId++;
+        button.setAttribute("value", numeroId);
+        divConteneurCategories.appendChild(button);
+        button.innerHTML = element.name;
+        console.log(button);
+      });
+    });
+}
+createButton();
+
+function filtrageCategories() {
+  console.log("coucou");
+  const url = "http://localhost:5678/api/works";
+  let button = document.querySelectorAll(".categorie");
+  for (const filtrage of button) {
+    filtrage.addEventListener("click", () => {
+      let conteneurParent = document.getElementById("gallery");
+      conteneurParent = "";
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          if (filtrage.value == 1) {
+            creationFigure();
+            console.log(filtrage.value);
+          } else {
+            console.log(filtrage.value);
+            for (let element of data) {
+              if (element.categoryId == filtrage.value) {
+                let conteneurParent = document.getElementById("gallery");
+                let conteneurPhoto = "";
+                conteneurPhoto.innerHTML += `
+                                                        <figure>
+                                                        <img src=${data[element].imageUrl} alt=${data[element].title}>
+                                                        <figcaption>${data[element].title}</figcaption>
+                                                        </figure>
+                                                        `;
+                conteneurParent.appendChild(conteneurPhoto);
+              }
+            }
+          }
+        });
+    });
+  }
+}
+filtrageCategories();

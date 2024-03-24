@@ -1,5 +1,5 @@
 //fonction pour créer les balises figure dans le HTML et récupérer les photos
-function creationFigure() {
+function createFigure() {
   const url = "http://localhost:5678/api/works";
   //pour récupérer les travaux depuis le Backend
   fetch(url)
@@ -9,80 +9,66 @@ function creationFigure() {
     .then(function (data) {
       data.forEach((element) => {
         //pour créer les balises figures dans le html
-        let conteneurParent = document.getElementById("gallery");
-        let conteneurPhoto = document.createElement("figure");
-        let imageGallerie = document.createElement("img");
-        let legendePhoto = document.createElement("figcaption");
-        legendePhoto.innerText = "legende photo";
-        conteneurParent.appendChild(conteneurPhoto);
-        conteneurPhoto.appendChild(imageGallerie);
-        conteneurPhoto.appendChild(legendePhoto);
-        imageGallerie.setAttribute("src", "");
-        imageGallerie.setAttribute("alt", "");
-        imageGallerie.src = element.imageUrl;
-        imageGallerie.alt = element.title;
-        legendePhoto.innerHTML = element.title;
+        let parentContainer = document.getElementById("gallery");
+        let photoContainer = document.createElement("figure");
+        let galleryImage = document.createElement("img");
+        let photoLegend = document.createElement("figcaption");
+        photoLegend.innerText = "légende photo";
+        parentContainer.appendChild(photoContainer);
+        photoContainer.appendChild(galleryImage);
+        photoContainer.appendChild(photoLegend);
+        galleryImage.setAttribute("src", "");
+        galleryImage.setAttribute("alt", "");
+        galleryImage.src = element.imageUrl;
+        galleryImage.alt = element.title;
+        photoLegend.innerHTML = element.title;
       });
     });
 }
-//creationFigure()
-//fontion pour créer les boutons de filtrage selon les catégories
-function creationFiltres() {
+createFigure();
+
+//fonction pour créer les boutons des différentes catégories
+function createButton() {
   const urlCategories = "http://localhost:5678/api/categories";
   fetch(urlCategories)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      let numeroId = 1;
+      let numberId = 1;
       data.forEach((element) => {
-        //pour créer les boutons des filtres avec leurs noms et id(sauf "Tous")
-        let divConteneurCategories = document.getElementById("filtres");
+        //pour créer les boutons des catégories avec leurs noms et id (sauf "Tous")
+        let categoryContainerDiv = document.getElementById("filtres");
         let button = document.createElement("button");
         button.setAttribute("class", "categorie");
-        button.setAttribute("id", "categorie" + numeroId);
-        numeroId++;
-        button.setAttribute("value", numeroId);
-        divConteneurCategories.appendChild(button);
+        button.setAttribute("id", "categorie" + numberId);
+        numberId++;
+        button.setAttribute("value", numberId);
+        categoryContainerDiv.appendChild(button);
         button.innerHTML = element.name;
         console.log(button);
       });
     });
 }
-creationFiltres();
+createButton();
 
-function filtrageCategories() {
-  console.log("coucou");
+//récupérer les boutons par id ou class ("categorie" + numberId) class="categorie"
+//mettre un eventlistener pour le clic sur le bouton
+//l'appel à l'API retourne un tableau, mettre le tableau dans un set
+//boucler sur le set pour récupérer selon les categoryID  ou l'element.id:  pour les objets 1
+// 2 pour apparts et 3 pour hotels restos
+// categorie0 attribuée à "tous"
+//condition si id categorie et id bouton match alors on affiche les travaux
+//par défaut ("tous") affiche tous les travaux
+//appeler la fonction createFigure si ça matche? 
+function filterWorks(){
   const url = "http://localhost:5678/api/works";
-  let button = document.querySelectorAll(".categorie");
-  for (const filtrage of button) {
-    filtrage.addEventListener("click", () => {
-      let conteneurParent = document.getElementById("gallery");
-      conteneurParent = "";
-      fetch(url)
-        .then((response) => response.json())
-        .then((data) => {
-          if (filtrage.value == 1) {
-            creationFigure();
-            console.log(filtrage.value);
-          } else {
-            console.log(filtrage.value);
-            for (let element of data) {
-              if (element.categoryId == filtrage.value) {
-                let conteneurParent = document.getElementById("gallery");
-                let conteneurPhoto = "";
-                conteneurPhoto.innerHTML += `
-                                                        <figure>
-                                                        <img src=${data[element].imageUrl} alt=${data[element].title}>
-                                                        <figcaption>${data[element].title}</figcaption>
-                                                        </figure>
-                                                        `;
-                conteneurParent.appendChild(conteneurPhoto);
-              }
-            }
-          }
-        });
-    });
-  }
+  //pour récupérer les travaux depuis le Backend
+  fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function(data){
+
+    })
 }
-filtrageCategories();

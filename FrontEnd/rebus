@@ -75,3 +75,70 @@ fetch(url)
 //par défaut ("tous") affiche tous les travaux
 //appeler la fonction createFigure si ça matche? 
 // attention faire appel à la fonction createButton dans cette fonction double les boutons
+function filterWorks(){
+  createButton();
+  let filterButtons = document.querySelectorAll(".categorie");
+  const url = "http://localhost:5678/api/works";
+  for (const button of filterButtons) {
+    button.addEventListener("click", () => {
+      fetch(url)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function(data){
+        console.log("clicked button value", button);
+        if (button.value==0) {
+          createFigure();
+          console.log("testTous");
+        } else {
+
+          console.log("testAutresBoutons");
+        }
+      })
+    })
+    
+  }
+}
+filterWorks();
+
+function filterWorks() {
+  const url = "http://localhost:5678/api/works";
+  let categoryId = button.value;
+  document.getElementById("filtres").addEventListener("click", function(event) {
+    if (event.target && event.target.matches(".categorie")) {
+      fetch(url)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          console.log(event.target);
+          if (event.target.value == 0) {
+            createFigure();
+            console.log("testTous");
+          } else {
+            console.log("testAutresBoutons");
+
+          }
+        });
+    }
+  });
+}
+createButton();
+filterWorks();
+
+
+const parentContainer = document.getElementById("gallery");
+parentContainer.innerHTML = "";
+let photoContainer = document.createElement("figure");
+let galleryImage = document.createElement("img");
+let photoLegend = document.createElement("figcaption");
+photoLegend.innerText = "légende photo";
+parentContainer.appendChild(photoContainer);
+photoContainer.appendChild(galleryImage);
+photoContainer.appendChild(photoLegend);
+galleryImage.setAttribute("src", "");
+galleryImage.setAttribute("alt", "");
+galleryImage.src = element.imageUrl;
+galleryImage.alt = element.title;
+photoLegend.innerHTML = element.title;
+

@@ -1,4 +1,18 @@
-//fonction pour créer les balises figure dans le HTML et récupérer les photos
+// fonction pour créer les cadres des photos
+function createCard(element) {
+  let photoContainer = document.createElement("figure");
+  let galleryImage = document.createElement("img");
+  let photoLegend = document.createElement("figcaption");
+  let parentContainer = document.getElementById("gallery");
+  photoLegend.innerText = element.title;
+  parentContainer.appendChild(photoContainer);
+  photoContainer.appendChild(galleryImage);
+  photoContainer.appendChild(photoLegend);
+  galleryImage.setAttribute("src", element.imageUrl);
+  galleryImage.setAttribute("alt", element.title);
+}
+
+//fonction pour récupérer les photos lors de l'affichage de la page
 function createFigure() {
   const url = "http://localhost:5678/api/works";
   //pour récupérer les travaux depuis le Backend
@@ -9,19 +23,7 @@ function createFigure() {
     .then(function (data) {
       data.forEach((element) => {
         //pour créer les balises figures dans le html
-        let parentContainer = document.getElementById("gallery");
-        let photoContainer = document.createElement("figure");
-        let galleryImage = document.createElement("img");
-        let photoLegend = document.createElement("figcaption");
-        photoLegend.innerText = "légende photo";
-        parentContainer.appendChild(photoContainer);
-        photoContainer.appendChild(galleryImage);
-        photoContainer.appendChild(photoLegend);
-        galleryImage.setAttribute("src", "");
-        galleryImage.setAttribute("alt", "");
-        galleryImage.src = element.imageUrl;
-        galleryImage.alt = element.title;
-        photoLegend.innerHTML = element.title;
+        createCard(element);
       });
     });
 }
@@ -82,15 +84,7 @@ function createFilteredFigure(data, buttonValue) {
   parentContainer.innerHTML = ""; // Effacer le contenu précédent
   data.forEach((element) => {
     if (element.categoryId == buttonValue) {
-      let photoContainer = document.createElement("figure");
-      let galleryImage = document.createElement("img");
-      let photoLegend = document.createElement("figcaption");
-      photoLegend.innerText = element.title;
-      parentContainer.appendChild(photoContainer);
-      photoContainer.appendChild(galleryImage);
-      photoContainer.appendChild(photoLegend);
-      galleryImage.setAttribute("src", element.imageUrl);
-      galleryImage.setAttribute("alt", element.title);
+      createCard(element);
     }
   });
 }

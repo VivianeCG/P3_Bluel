@@ -2,8 +2,8 @@
 let mailInput = document.getElementById("email");
 let userMail = mailInput.value;
 console.log(userMail);
-// vérifier que format e-mail est correct
-let checkValidUserMail = new RegExp('^[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+$');
+// vérifier que format e-mail est correct      à transformer en fonction
+let checkValidUserMail = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+");
 let resultUserMail = checkValidUserMail.test(userMail);
 console.log(resultUserMail);
 // récupération mdp
@@ -25,7 +25,7 @@ form.addEventListener("submit", (event)=>{
     console.log("userMail est rempli");
   }
   if (userPassword === "") {
-    console.log("userPassword est vide");
+    console.log(userPassword.trim());
   } else {
     console.log("userPassword est rempli");
   }
@@ -51,7 +51,7 @@ form.addEventListener("submit", (event)=>{
 
 
 
-/*
+
 //connexion au compte
 let remplissageIdentifiants = document.querySelector(".submit");
 //pour récupérer la valeur de chaque champs (e-mail et mot de passe)
@@ -68,15 +68,15 @@ remplissageIdentifiants.addEventListener("click", (event) => {
 });
 const identifiantConnexion = JSON.stringify(seConnecter);
 try {
-  const reponse = fetch("http://urlConnexion:5678/api/users/login");
+  const reponse = fetch("http://urlConnexion:5678/api/users/login", {
   method: "POST",
-    (headers = {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    }),
-    (body = identifiantConnexion);
-  console.log(reponse);
+    headers : {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    body : identifiantConnexion
+})
+//condition stockage tocken pour verif si statut 200 on récup token
 } catch (error) {
   alert("l'identifiant ou le mot de passe est erroné");
 }
-*/

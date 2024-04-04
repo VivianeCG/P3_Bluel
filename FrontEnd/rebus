@@ -1,144 +1,104 @@
-function createButton() {
-  const urlCategories = "http://localhost:5678/api/categories";
-  fetch(urlCategories)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      let numeroId = 1;
-      data.forEach((element) => {
-        //pour créer les boutons des filtres avec leurs noms et id(sauf "Tous")
-        let divConteneurCategories = document.getElementById("filtres");
-        let button = document.createElement("button");
-        button.setAttribute("class", "categorie");
-        button.setAttribute("id", "categorie" + numeroId);
-        numeroId++;
-        button.setAttribute("value", numeroId);
-        divConteneurCategories.appendChild(button);
-        button.innerHTML = element.name;
-        console.log(button);
-      });
-    });
-}
-createButton();
 
-function filtrageCategories() {
-  console.log("coucou");
-  const url = "http://localhost:5678/api/works";
-  let button = document.querySelectorAll(".categorie");
-  for (const filtrage of button) {
-    filtrage.addEventListener("click", () => {
-      let conteneurParent = document.getElementById("gallery");
-      conteneurParent = "";
-      fetch(url)
-        .then((response) => response.json())
-        .then((data) => {
-          if (filtrage.value == 1) {
-            creationFigure();
-            console.log(filtrage.value);
-          } else {
-            console.log(filtrage.value);
-            for (let element of data) {
-              if (element.categoryId == filtrage.value) {
-                let conteneurParent = document.getElementById("gallery");
-                let conteneurPhoto = "";
-                conteneurPhoto.innerHTML += `
-                                                        <figure>
-                                                        <img src=${data[element].imageUrl} alt=${data[element].title}>
-                                                        <figcaption>${data[element].title}</figcaption>
-                                                        </figure>
-                                                        `;
-                conteneurParent.appendChild(conteneurPhoto);
-              }
-            }
-          }
-        });
-    });
-  }
-}
-filtrageCategories();
 
-fetch(url)
-.then(function (response) {
-  return response.json();
+const response = await fetch("http://localhost:5678/api/users/login", {
+  method: "POST",
+    headers : {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+  body : connexionIdentifier
 })
-.then(function(data){
-})
-
-//récupérer les boutons par id ou class ("categorie" + numberId) class="categorie"
-//mettre un eventlistener pour le clic sur le bouton
-//l'appel à l'API retourne un tableau, mettre le tableau dans un set?
-//boucler sur le set pour récupérer selon les categoryID  ou l'element.id:  pour les objets 1
-// 2 pour apparts et 3 pour hotels restos?
-// categorie0 attribuée à "tous"
-//condition si id categorie et id bouton match alors on affiche les travaux
-//par défaut ("tous") affiche tous les travaux
-//appeler la fonction createFigure si ça matche? 
-// attention faire appel à la fonction createButton dans cette fonction double les boutons
-function filterWorks(){
-  createButton();
-  let filterButtons = document.querySelectorAll(".categorie");
-  const url = "http://localhost:5678/api/works";
-  for (const button of filterButtons) {
-    button.addEventListener("click", () => {
-      fetch(url)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function(data){
-        console.log("clicked button value", button);
-        if (button.value==0) {
-          createFigure();
-          console.log("testTous");
-        } else {
-
-          console.log("testAutresBoutons");
-        }
-      })
-    })
-    
+.then(response => {
+  // Vérifiez si la réponse est correcte (code 200)
+  if (response.ok) {
+    // Traitez la réponse et stockez le token si nécessaire
+  } else {
+    // Affichez une alerte si les identifiants sont incorrects
+    alert("Erreur dans l’identifiant ou le mot de passe");
   }
-}
-filterWorks();
+})
+//condition stockage tocken pour verif si statut 200 on récup token
+.catch(error => {
+  console.error("Erreur lors de la requête fetch :", error);
+});
+//window.localStorage.setItem(connect);
+; 
 
-function filterWorks() {
-  const url = "http://localhost:5678/api/works";
-  let categoryId = button.value;
-  document.getElementById("filtres").addEventListener("click", function(event) {
-    if (event.target && event.target.matches(".categorie")) {
-      fetch(url)
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(data) {
-          console.log(event.target);
-          if (event.target.value == 0) {
-            createFigure();
-            console.log("testTous");
-          } else {
-            console.log("testAutresBoutons");
+//connexion au compte
+let identifierFilled = document.querySelector(".submit");
+//pour récupérer la valeur de chaque champs (e-mail et mot de passe)
+let identifier = document.getElementById("email");
+let password = document.getElementById("password");
 
-          }
-        });
+identifierFilled.addEventListener("click", async (event) => {
+  event.preventDefault();
+  //pour stocker la valeur des 2 champs
+  let connect = {
+    identifier: identifier.value,
+    password: password.value,
+  };
+  console.log(connect);
+
+  try {
+    const identifiantConnexion = JSON.stringify(connect);
+    const reponse = await fetch("http://urlConnexion:5678/api/users/login", {
+      method: "POST",
+      headers : {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body : identifiantConnexion
+    });
+
+    if (reponse.ok) {
+      const token = await reponse.json();
+      console.log("Token reçu :", token);
+      // Stocker le token et effectuer des actions supplémentaires si nécessaire
+    } else {
+      throw new Error('Erreur dans la requête');
     }
-  });
-}
-createButton();
-filterWorks();
+  } catch (error) {
+    alert("Erreur dans l’identifiant ou le mot de passe " + error);
+  }
+});
 
 
-const parentContainer = document.getElementById("gallery");
-parentContainer.innerHTML = "";
-let photoContainer = document.createElement("figure");
-let galleryImage = document.createElement("img");
-let photoLegend = document.createElement("figcaption");
-photoLegend.innerText = "légende photo";
-parentContainer.appendChild(photoContainer);
-photoContainer.appendChild(galleryImage);
-photoContainer.appendChild(photoLegend);
-galleryImage.setAttribute("src", "");
-galleryImage.setAttribute("alt", "");
-galleryImage.src = element.imageUrl;
-galleryImage.alt = element.title;
-photoLegend.innerHTML = element.title;
 
+
+// récupération e-mail
+let mailInput = document.getElementById("email");
+let userMail = mailInput.value;
+console.log(userMail);
+// vérifier que format e-mail est correct      à transformer en fonction
+let checkValidUserMail = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+");
+let resultUserMail = checkValidUserMail.test(userMail);
+console.log(resultUserMail);
+// récupération mdp
+let passwordInput = document.getElementById("mot-de-passe");
+let userPassword = passwordInput.value;
+console.log(userPassword);
+// vérifier que format du mdp est correct?
+//let checkValidUserPassword = new RegExp('^[a-z0-9._-#@{(^=+-*/%§?!)}]+$');
+//let resultUserPassword = checkValidUserPassword.test(userPassword);
+//console.log(resultUserPassword);
+// gestion de l'evt submit
+const form = document.querySelector("form");
+form.addEventListener("submit", (event)=>{
+  event.preventDefault();
+  console.log("la page ne s'est pas rechargée")
+  if (userMail === "") {
+    console.log("userMail est vide");
+  } else {
+    console.log("userMail est rempli");
+  }
+  if (userPassword === "") {
+    console.log(userPassword.trim());
+  } else {
+    console.log("userPassword est rempli");
+  }
+});
+// prévenir user s'il y a une erreur
+// vérifier que user a le droit de se connecter,quel type de requête pour envoyer les infos?
+// stocker les infos de connexion
+// rediriger vers la page d'accueil en maintenant la connexion
+// stocker le token d'authentification pour pouvoir réaliser les envois et suppressions de travaux (= étape suivante)

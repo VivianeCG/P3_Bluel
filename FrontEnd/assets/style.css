@@ -104,6 +104,7 @@ nav a {
 }
 #actif {
 	font-weight: 600;
+	color: black;
 }
 a:visited{
 	color: black;

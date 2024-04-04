@@ -17,7 +17,7 @@
 		<ul>
 			<li><a href="../index.html" class="lien">projets</a></li>
 			<li>contact</li>
-			<li><a href="../pages/connexion.html" class="lien" id="actif">login</a></li>
+			<li><a href="/FrontEnd/pages/connexion.html" class="lien" id="actif">login</a></li>
 			<li><img src="../assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -28,10 +28,10 @@
             <p id="connexion">Log In</p>
             <form class="log-in" method="get" action="">
                 <label for="email">E-mail</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" autocomplete="email">
                 <label for="password">Mot de Passe</label>
-                <input type="password" name="mot-de-passe" id="mot-de-passe">
-                <input type="submit" value="Se connecter" class="submit">
+                <input type="password" name="password" id="password">
+                <input type="submit" value="connect" class="submit">
             </form>
             <a href="#" class="mot-de-passe-oublie">Mot de passe oublié</a>
         </div>
@@ -45,6 +45,6 @@
 		</ul>
 	</nav>
 </footer>
-<script src="./JavaScript/pageConnexion.js" ></script>
+<script src="../JavaScript/pageConnexion.js" ></script>
 </body>
 </html>

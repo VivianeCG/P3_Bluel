@@ -20,7 +20,7 @@ identifierFilled.addEventListener("click", async (event) => {
       //const response = await fetch("http://localhost:5678/api/works", {
       method: "POST",
       headers: {
-        "Accept": "application/json",
+        //"Accept": "application/json",
         "Content-Type": "application/json",
        // "Authorization":`Bearer ${token}`
       },

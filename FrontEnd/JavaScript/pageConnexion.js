@@ -17,24 +17,29 @@ identifierFilled.addEventListener("click", async (event) => {
   // Effectuez la requête fetch à l'URL de connexion
   try {
     const response = await fetch("http://localhost:5678/api/users/login", {
+      //const response = await fetch("http://localhost:5678/api/works", {
       method: "POST",
       headers: {
         "Accept": "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+       // "Authorization":`Bearer ${token}`
       },
       body: connexionIdentifier
     });
-
+    //const token = window.localStorage.getItem(`${token}`);
+    // Vérifiez si la réponse est correcte (code 200)
+    if (response.status == 200) {
+      console.log("Message: connecté");
+      // Traitez la réponse et stockez le token si nécessaire
+    } else {
+      // Affichez une alerte si les identifiants sont incorrects
+      //alert("Erreur dans l’identifiant ou le mot de passe");
+      console.log("Erreur lors de la requête fetch")
+    }
+    identifier = document.getElementById("email").value = "";
+    password = document.getElementById("password").value = "";
   } catch (error) {
-    console.error("Erreur lors de la requête fetch :", error);
+    console.log("Erreur lors de la requête fetch :", error);
   }
 });
 
-
-    // Vérifiez si la réponse est correcte (code 200)
-    //if (response.ok) {
-      // Traitez la réponse et stockez le token si nécessaire
-    //} else {
-      // Affichez une alerte si les identifiants sont incorrects
-      //alert("Erreur dans l’identifiant ou le mot de passe");
-    //}

@@ -59,6 +59,31 @@ header {
 	justify-content: space-between;
 	margin: 50px 0
 }
+.edit {
+	font-size: 16px;
+	font-weight: 400;
+	font-family: 'Work Sans';
+	background-color: black;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 59px;
+}
+.edit p{
+	margin-left: 10px;
+}
+.wrapper{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 1140px;
+}
+.header{
+	display: flex;
+	justify-content: space-between;
+	margin: 50px 0
+}
 section {
 	margin: 50px 0
 }

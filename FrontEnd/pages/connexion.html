@@ -11,40 +11,44 @@
 	<link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
-<header>
-	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-	<nav>
-		<ul>
-			<li><a href="../index.html" class="lien">projets</a></li>
-			<li>contact</li>
-			<li><a href="/FrontEnd/pages/connexion.html" class="lien" id="actif">login</a></li>
-			<li><img src="../assets/icons/instagram.png" alt="Instagram"></li>
-		</ul>
-	</nav>
-</header>
-<main>
-    <div class="conteneur">
-        <div class="connexion">
-            <p id="connexion">Log In</p>
-            <form class="log-in" method="get" action="">
-                <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" autocomplete="email">
-                <label for="password">Mot de Passe</label>
-                <input type="password" name="password" id="password">
-                <input type="submit" value="connect" class="submit">
-            </form>
-            <a href="#" class="mot-de-passe-oublie">Mot de passe oublié</a>
-        </div>
-    </div>
-</main>
-
-<footer>
-	<nav>
-		<ul>
-			<li>Mentions Légales</li>
-		</ul>
-	</nav>
-</footer>
-<script src="../JavaScript/pageConnexion.js" ></script>
+	<div class="main-container">
+		<header>
+			<div class="header-wrapper">
+				<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+				<nav>
+					<ul>
+						<li><a href="../index.html" class="lien">projets</a></li>
+						<li>contact</li>
+						<li><a href="/FrontEnd/pages/connexion.html" class="lien" id="actif">login</a></li>
+						<li><img src="../assets/icons/instagram.png" alt="Instagram"></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<main>
+			<div class="conteneur">
+				<div class="connexion">
+					<p id="connexion">Log In</p>
+					<form class="log-in" method="get" action="">
+						<label for="email">E-mail</label>
+						<input type="email" name="email" id="email" autocomplete="email">
+						<label for="password">Mot de Passe</label>
+						<input type="password" name="password" id="password">
+						<input type="submit" value="connect" class="submit">
+					</form>
+					<a href="#" class="mot-de-passe-oublie">Mot de passe oublié</a>
+				</div>
+			</div>
+		</main>
+		
+		<footer>
+			<nav>
+				<ul>
+					<li>Mentions Légales</li>
+				</ul>
+			</nav>
+		</footer>
+		<script src="../JavaScript/pageConnexion.js" ></script>
+	</div>
 </body>
 </html>

@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
               localStorage.setItem('token', data.token);
               console.log(data); 
               // Redirection de l'utilisateur après la connexion réussie
-              window.location.href = '../pages/homepage_edit.html';
+              window.location.href = "../index.html";
           })
           .catch(error => {
               console.error('Erreur:', error);

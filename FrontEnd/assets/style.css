@@ -221,6 +221,13 @@ button:hover {
 	background-color: #1D6154;
 	cursor: pointer;
 }
+.edit-gallery {
+	position: absolute;
+	width: 630px;
+	height: 688px;
+	background-color: white;
+	border-radius: 10px;
+}
 .gallery {
 	width: 100%;
 	display: grid;

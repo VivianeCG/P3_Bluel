@@ -30,6 +30,35 @@
 				</nav>
 			</div>
 		</header>
+		<div class="modal-container">
+			<div class="overlay trigger-modal"></div>
+			<div class="edit-modal">
+				<div class="edit-gallery">
+					<div class="modal-controller">
+						<button class="trigger-modal modal-button">X</button>
+					</div>
+					<div class="edit-photo-container">
+						<h3>Galerie photo</h3>
+						<!--<button class="delete-photo"><i class="fa-solid fa-trash-can"></i></button>-->
+					</div>
+					<button class="add-a-photo">Ajouter une photo</button>
+				</div>
+				<!--<div class="edit-add-photo">
+					<div class="buttons-edit-add-photo">
+						<button class="modal-button"><i class="fa-solid fa-arrow-left"></i></button>
+						<button class="trigger-modal modal-button">X</button>
+					</div>
+					<div class="add-photo">
+						<h3>Ajout photo</h3>
+						<i class="fa-regular fa-image"></i>
+						<p>jpg, png: 4 mo max.</p>
+						<form method="post" action="" name="add-a-photo">
+						</form>
+					</div>
+					<button class="validation-button">Valider</button>
+				</div>-->
+			</div>
+		</div>
 		<main>
 			<section id="introduction">
 				<figure>
@@ -50,28 +79,6 @@
 				<h2>Mes Projets</h2>
 				<div id="filtres">
 					<button type="button" class="categorie" id="categorie" value="0">Tous</button>
-				</div>
-				<div class="modal-container">
-					<div class="overlay"></div>
-					<section class="edit-modal">
-					<div class="edit-gallery">
-						<button class="trigger-modal">X</button>
-						<h3>Galerie photo</h3>
-						<button>Ajouter une photo</button>
-					</div>
-					<div class="edit-add-photo">
-						<!--mettre icône flèche à gauche-->
-						<h3>Ajout photo</h3>
-						<button class="trigger-modal">X</button>
-						<div class="add-photo">
-							<!--mettre icône montagne et soleil-->
-							<button class="add-a-photo">Ajouter une photo</button>
-							<p>jpg, png, 4 mo max.</p>
-						</div>
-						<form action="">
-						</form>
-					</div>
-				</section>
 				</div>
 				
 				<div class="gallery" id="gallery">
@@ -100,6 +107,7 @@
 			</nav>
 		</footer>
 		<script src="./JavaScript/main.js" ></script>
+		<script src="./JavaScript/pageEdition.js"></script>
 	</div>
 </body>
 </html>

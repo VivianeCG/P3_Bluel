@@ -1,9 +1,9 @@
+ let parentContainer = document.getElementById("gallery");
 // fonction pour créer les cadres des photos
-function createCard(element) {
+ function createCard(element) {
   let photoContainer = document.createElement("figure");
   let galleryImage = document.createElement("img");
   let photoLegend = document.createElement("figcaption");
-  let parentContainer = document.getElementById("gallery");
   photoLegend.innerText = element.title;
   parentContainer.appendChild(photoContainer);
   photoContainer.appendChild(galleryImage);
@@ -13,7 +13,7 @@ function createCard(element) {
 }
 
 //fonction pour récupérer les photos lors de l'affichage de la page
-function createFigure() {
+ function createFigure() {
   const url = "http://localhost:5678/api/works";
   //pour récupérer les travaux depuis le Backend
   fetch(url)
@@ -52,7 +52,7 @@ function createButton() {
       });
     });
 }
-//createButton();
+
 function filterWorks() { //fonction pour filtrer les travaux "Tous" ou les autres catégories
   const url = "http://localhost:5678/api/works";
   document.getElementById("filtres").addEventListener("click", function(event) {

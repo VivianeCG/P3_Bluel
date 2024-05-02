@@ -164,10 +164,15 @@ a:visited{
 	max-width: 450px;
 }
 #portfolio h2 {
-	text-align: center;
+	margin-top: 2em;
 	margin-bottom: 1em;
 }
 /*bouton du mode édition déclenchant la modale*/
+.title-and-edit-button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 .edit-button{
 	font-size: 14px;
 	font-weight: 400;
@@ -178,8 +183,8 @@ a:visited{
 	justify-content: space-around;
 	background-color: #FFFEF8;
 	position: inherit;
-	margin-left: 58%;
-	margin-top: 0.5%;
+	margin-left: 58px;
+	margin-top: 2.1em;
 	border: transparent;
 	border-radius: 15px;
 	cursor: pointer;

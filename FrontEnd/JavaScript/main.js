@@ -1,6 +1,6 @@
- let parentContainer = document.getElementById("gallery");
+export let parentContainer = document.getElementById("gallery");
 // fonction pour créer les cadres des photos
- function createCard(element) {
+export function createCard(element) {
   let photoContainer = document.createElement("figure");
   let galleryImage = document.createElement("img");
   let photoLegend = document.createElement("figcaption");
@@ -13,7 +13,7 @@
 }
 
 //fonction pour récupérer les photos lors de l'affichage de la page
- function createFigure() {
+export function createFigure() {
   const url = "http://localhost:5678/api/works";
   //pour récupérer les travaux depuis le Backend
   fetch(url)

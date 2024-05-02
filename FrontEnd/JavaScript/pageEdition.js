@@ -1,3 +1,3 @@
-import { parentContainer } from "./main";
-import { createCard } from "./main";
-import { createFigure } from "./main";
+import { parentContainer } from "./main.js";
+import { createCard } from "./main.js";
+import { createFigure } from "./main.js";

@@ -167,7 +167,7 @@ a:visited{
 	text-align: center;
 	margin-bottom: 1em;
 }
-/*bouton du mode édition*/
+/*bouton du mode édition déclenchant la modale*/
 .edit-button{
 	font-size: 14px;
 	font-weight: 400;
@@ -177,11 +177,12 @@ a:visited{
 	display: flex;
 	justify-content: space-around;
 	background-color: #FFFEF8;
-	position: absolute;
-	margin-left: 54%;
+	position: inherit;
+	margin-left: 58%;
 	margin-top: 0.5%;
 	border: transparent;
 	border-radius: 15px;
+	cursor: pointer;
 }
 /*style des filtres*/
 #filtres {
@@ -213,7 +214,7 @@ a:visited{
 	padding-right: 8px;
 	background-color: white;
 }
-button:hover, .add-a-photo{
+button:not(.validation-button, .edit-button):hover{
 	color: white;
 	background-color: #1D6154;
 	cursor: pointer;
@@ -261,12 +262,12 @@ button:hover, .add-a-photo{
 #contact label {
 	margin: 2em 0 1em 0;
 }
-#contact textarea {
+#contact textarea{
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"], .add-a-photo{
+input[type="submit"] {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -329,7 +330,7 @@ footer{
 .log-in label {
 	margin: 2em 0 1em 0;
 }
-/*modale pour l'ajout et la suppression des photos*/
+/*modale aspect général*/
 
 .overlay{
 	background-color: #000000;
@@ -343,6 +344,7 @@ footer{
 	top: 0;
 	width: 100%;
 	height: 100%;
+	z-index: 1;
 }
 .edit-gallery, .edit-add-photo {
 	position: absolute;
@@ -350,9 +352,10 @@ footer{
 	height: 688px;
 	background-color: white;
 	border-radius: 10px;
-	left: 23%;
-	top: 25%;
+	/*left: 23%;
+	top: 25%;*/
 }
+/*modale présentant la gallerie photo pour la suppression*/
 .modal-button {
 	width: 24px;
 	height: 24px;
@@ -365,27 +368,133 @@ footer{
 	border: none;
 	margin: 4%;
   }
-.add-a-photo {
-	padding: 2% 4% 2% 4%;
-	width: 237px;
-	display: flex;
-	justify-content: center;
-}
-h3{
-	font-weight: 400;
-	font-family: 'Work Sans';
-	font-size: 26px;
-	display: flex;
-	justify-content: center;
-}
+  h3{
+	  font-weight: 400;
+	  font-family: 'Work Sans';
+	  font-size: 26px;
+	  display: flex;
+	  justify-content: center;
+	  margin-bottom: 30px;
+	}
 .modal-controller {
 	display: flex;
 	flex-direction: row;
 	justify-content: end;
 }
+
+.add-a-photo{ 
+	padding: 2% 4% 2% 4%;
+	width: 237px;
+	/*display: flex;
+	justify-content: center;*/
+	font-weight: 700;
+	font-family: 'Syne';
+	font-size: 14px;
+}
+/*modale avec formulaire pour ajouter une photo*/
 .edit-photo-container {
-	height: 500px;
+	height: 431px;
 	width: 420px;
 	margin-left: 100px;
-	border-bottom: 1px #1D6154;
+	margin-top: 30px;
+	border-bottom: 1px #b3b3b3 solid;
+}
+.buttons-edit-add-photo {
+	display: flex;
+	justify-content: space-between;
+}
+.add-photo {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	border-bottom: 1px #b3b3b3 solid;
+	width: 420px;
+	height: 424px;
+	margin-left: 105px;
+}
+.validation-button{
+	padding: 2% 4% 2% 4%;
+	width: 237px;
+	display: flex;
+	justify-content: center;
+	color: white;
+	background-color: #a7a7a7;
+	margin-top: 40px;
+	margin-left: 193px;
+	border-radius: 60px;
+	font-weight: 700;
+	font-family: 'Syne';
+	font-size: 14px;
+}
+.file-drop {
+	text-align: center;
+	width: 420px;
+	height:169px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3px;
+	background-color: #E8F1F6;
+  }
+  
+  .file-input {
+	display: none;
+  }
+  
+  .file-label {
+	cursor: pointer;
+  }
+  
+  .photo-icon {
+	width: 76px; 
+	height: 76px;
+	font-size: 68px;
+	color: #B9C5CC;
+	;
+  }
+  
+  .file-label span {
+	display: block;
+	font-size: 10px;
+	font-family: Work Sans;
+	font-weight: 400;
+	color: #444444;
+	margin-top: 10px;
+}
+  #file-input-button{ 
+	font-family: 'Work Sans';
+	font-weight: 500;
+	font-size: 14px;
+	color: #306685;
+	background-color: #CBD6DC;
+	border-radius: 60px;
+	width: 173px;
+	height: 36px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  }
+  .photo-identifiers{
+	font-family: 'Work Sans';
+	font-size: 14px;
+	font-weight: 500;
+  }
+  .photo-identifiers input, select{
+	width: 420px;
+	height: 51px;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	margin-bottom: 10px;
+	background-color: white;
+}
+.form-legend{
+	margin-top: 20px;
+	margin-bottom: 15px;
+}
+option {
+	font-size: 14 px;
+	font-family: Work Sans;
+	font-weight: 400;
+	color: #444444;
+	line-height: 16,42px;
 }

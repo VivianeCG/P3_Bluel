@@ -54,3 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
           });
   });
 });
+// stockage du token pour les besoins de la page édition
+export function saveToken(token) {
+    localStorage.setItem('token', token);
+}

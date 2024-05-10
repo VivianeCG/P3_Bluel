@@ -1,13 +1,11 @@
 //importation des fonctions pour créer dynamiquement la galerie photo
-import { parentContainer } from "./main.js";
-import { createCard } from "./main.js";
-import { createFigure } from "./main.js";
+import { parentContainer, createCard, createFigure } from "./main.js";
 
 //importation de la fonction permettant de récupérer le token pour passer en mode édition
-import { saveToken } from "./pageConnexion.js";
+//import { saveToken } from "./pageConnexion.js";
 
 //faire apparaître le bandeau "mode édition" et le bouton "modifier" lorsque que l'utilisateur est connecté.
-function showConnectedToEditPage() {
+/*function showConnectedToEditPage() {
     saveToken
     const editHeader = document.querySelector(".edit");
     const editButton = document.querySelector(".edit-button");
@@ -16,10 +14,10 @@ function showConnectedToEditPage() {
         editButton.style.visibility = 'visible';
     }
 }
-showConnectedToEditPage();
+showConnectedToEditPage();*/
 
 //créer la première partie de la modale
-function createModalGallery() {
+/*function createModalGallery() {
     const overlay = document.createElement('div');
     overlay.classList.add('overlay','trigger-modal');
     const editModal = document.createElement('div');
@@ -47,10 +45,10 @@ function createModalGallery() {
     editGallery.appendChild(addPhotoButton);
     modalController.appendChild(closeButton);
 }
-//createModalGallery();
+//createModalGallery();*/
 
 //créer la deuxième partie de la modale
-function createModalToAddPhotos() {
+/*function createModalToAddPhotos() {
     const overlay = document.createElement('div');
     overlay.classList.add('overlay','trigger-modal');
     const editModal = document.createElement('div');
@@ -121,7 +119,7 @@ function createModalToAddPhotos() {
     document.body.appendChild(overlay);
     overlay.appendChild(editModal);
     //ajouter les appendChild
-}
+}*/
 //faire apparaître la modale au clic sur le bouton modifier
 
 //fermeture de la modale au clic sur la croix ou sur l'overlay

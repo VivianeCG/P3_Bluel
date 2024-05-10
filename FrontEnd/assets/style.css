@@ -460,13 +460,12 @@ footer{
 	height: 76px;
 	font-size: 68px;
 	color: #B9C5CC;
-	;
   }
   
   .file-label span {
 	display: block;
 	font-size: 10px;
-	font-family: Work Sans;
+	font-family: 'Work Sans';
 	font-weight: 400;
 	color: #444444;
 	margin-top: 10px;
@@ -502,9 +501,9 @@ footer{
 	margin-bottom: 15px;
 }
 option {
-	font-size: 14 px;
-	font-family: Work Sans;
+	font-size: 14px;
+	font-family: 'Work Sans';
 	font-weight: 400;
 	color: #444444;
-	line-height: 16,42px;
+	line-height: 16px;
 }

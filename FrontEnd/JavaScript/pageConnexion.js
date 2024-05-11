@@ -7,6 +7,16 @@ document.addEventListener('DOMContentLoaded', function() {
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
 
+      let checkValidUserMail = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+");
+      if (!checkValidUserMail.test(email)) {
+        alert("Erreur dans l'identifiant ou le mot de passe");
+        return;
+      }
+      let checkValidUserPassword = new RegExp("(?=.*[a-zA-Z])(?=.*\\d).{6,}");
+      if (!checkValidUserPassword.test(password)) {
+        alert("Erreur dans l'identifiant ou le mot de passe");
+        return;
+      }
       // Création des données à envoyer à l'API
       const data = {
           email: email,
@@ -31,14 +41,13 @@ document.addEventListener('DOMContentLoaded', function() {
               return response.json();
           })
           .then(data => {
-              // Traitement de la réponse de l'API (par exemple, rediriger l'utilisateur vers une nouvelle page)
-              console.log(data); // Vous pouvez afficher la réponse dans la console pour le débogage
+              // Traitement de la réponse de l'API
+              console.log(data); 
               // Redirection de l'utilisateur après la connexion réussie
               window.location.href = '../index.html';
           })
           .catch(error => {
               console.error('Erreur:', error);
-              // Gérer l'erreur, par exemple, afficher un message d'erreur à l'utilisateur
           });
   });
 });

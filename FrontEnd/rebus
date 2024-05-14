@@ -1,152 +1,59 @@
-\Users\vivia\Documents\OpenClassrooms\projet_3\P3_Bluel\FrontEnd\index.html
+//afficher la bannière et le bouton une fois redirigé sur la page index après la connexion
+function activateEditMode() {
+  document.getElementById('edit').style.display='flex';
+  document.getElementById('edit-button').style.display='flex';
+  document.getElementById('login').style.display = 'none';
+  document.getElementById('logout').style.display = 'flex';
+}
+function deactivateEditMode() {
+  document.getElementById('edit').style.display='none';
+  document.getElementById('edit-button').style.display='none';
+  document.getElementById('logout').style.display = 'none';
+  document.getElementById('login').style.display = 'flex';
+}
+// Récupération du token depuis le "local storage"
+//const token = localStorage.getItem('token');
+//afficher logout une fois redirigé sur la page index après la connexion
+function changeLogStatus() {
+  let logInStatus = document.getElementById('login');
+  console.log(logInStatus)
+ 
+      document.getElementById('login').style.display = 'none';
+      document.getElementById('logout').style.display = 'flex';
+  
+}
+//si la connexion est effective appeler les fonctions modifiant l'aspect de la page
+function successfullLogin() {
+  //pour vérifier que le token est bien récupéré avant de lancer la fonction changeLogStatus
+  console.log();
+  
+      activateEditMode();
+      changeLogStatus();
+  
+}
+successfullLogin();
 
+// Fonction pour réinitialiser la page
+// Ajouter un gestionnaire d'événements au bouton "Login/Logout"
+document.getElementById('logout').addEventListener('click', function() {
+          // suppression du token et réinitialisation de la page
+      localStorage.removeItem('token'); 
+      document.getElementById('edit').style.display = 'none';
+      document.getElementById('edit-button').style.display = 'none';
+      document.getElementById('logout').style.display = 'none';
+      document.getElementById('login').style.display = 'flex';
+});
 
-//connexion au compte
-let identifierFilled = document.querySelector(".submit");
-//pour récupérer la valeur de chaque champs (e-mail et mot de passe)
-let identifier = document.getElementById("email");
-let password = document.getElementById("password");
-identifierFilled.addEventListener("click", async (event) => {
-  event.preventDefault();
-  let emailValue = identifier.value;
-  let passwordValue = password.value;
-  //pour stocker la valeur des 2 champs
-  let connect = {
-    identity: emailValue,
-    thePassword: passwordValue,
-  };
-  console.log(connect);
-  const connexionIdentifier = JSON.stringify(connect);
-  // Effectuez la requête fetch à l'URL de connexion
-  try {
-    const response = await fetch("http://localhost:5678/api/users/login", {
-      //const response = await fetch("http://localhost:5678/api/works", {
-      method: "POST",
-      headers: {
-        //"Accept": "application/json",
-        "Content-Type": "application/json",
-       // "Authorization":`Bearer ${token}`
-      },
-      body: connexionIdentifier
-    });
-    //const token = window.localStorage.getItem(`${token}`);
-    // Vérifiez si la réponse est correcte (code 200)
-    if (response.status == 200) {
-      console.log("Message: connecté");
-      // Traitez la réponse et stockez le token si nécessaire
+// Appeler successfulLogin après que la page a fini de charger pour s'assurer d'avoir le token
+//document.addEventListener('DOMContentLoaded', successfullLogin);
+
+//\Users\vivia\Documents\OpenClassrooms\projet_3\P3_Bluel\FrontEnd\index.html
+function checkLoginStatus() {
+    if (token) {
+        activateEditMode();
+        changeLogStatus();
     } else {
-      // Affichez une alerte si les identifiants sont incorrects
-      //alert("Erreur dans l’identifiant ou le mot de passe");
-      console.log("Erreur lors de la requête fetch")
+        resetPage();
     }
-    identifier = document.getElementById("email").value = "";
-    password = document.getElementById("password").value = "";
-  } catch (error) {
-    console.log("Erreur lors de la requête fetch :", error);
-  }
-});
+}
 
-
-
-const response = await fetch("http://localhost:5678/api/users/login", {
-  method: "POST",
-    headers : {
-      "Accept": "application/json",
-      "Content-Type": "application/json"
-    },
-  body : connexionIdentifier
-})
-.then(response => {
-  // Vérifiez si la réponse est correcte (code 200)
-  if (response.ok) {
-    // Traitez la réponse et stockez le token si nécessaire
-  } else {
-    // Affichez une alerte si les identifiants sont incorrects
-    alert("Erreur dans l’identifiant ou le mot de passe");
-  }
-})
-//condition stockage tocken pour verif si statut 200 on récup token
-.catch(error => {
-  console.error("Erreur lors de la requête fetch :", error);
-});
-//window.localStorage.setItem(connect);
-; 
-
-//connexion au compte
-let identifierFilled = document.querySelector(".submit");
-//pour récupérer la valeur de chaque champs (e-mail et mot de passe)
-let identifier = document.getElementById("email");
-let password = document.getElementById("password");
-
-identifierFilled.addEventListener("click", async (event) => {
-  event.preventDefault();
-  //pour stocker la valeur des 2 champs
-  let connect = {
-    identifier: identifier.value,
-    password: password.value,
-  };
-  console.log(connect);
-
-  try {
-    const identifiantConnexion = JSON.stringify(connect);
-    const reponse = await fetch("http://urlConnexion:5678/api/users/login", {
-      method: "POST",
-      headers : {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      body : identifiantConnexion
-    });
-
-    if (reponse.ok) {
-      const token = await reponse.json();
-      console.log("Token reçu :", token);
-      // Stocker le token et effectuer des actions supplémentaires si nécessaire
-    } else {
-      throw new Error('Erreur dans la requête');
-    }
-  } catch (error) {
-    alert("Erreur dans l’identifiant ou le mot de passe " + error);
-  }
-});
-
-
-
-
-// récupération e-mail
-let mailInput = document.getElementById("email");
-let userMail = mailInput.value;
-console.log(userMail);
-// vérifier que format e-mail est correct      à transformer en fonction
-let checkValidUserMail = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+");
-let resultUserMail = checkValidUserMail.test(userMail);
-console.log(resultUserMail);
-// récupération mdp
-let passwordInput = document.getElementById("mot-de-passe");
-let userPassword = passwordInput.value;
-console.log(userPassword);
-// vérifier que format du mdp est correct?
-//let checkValidUserPassword = new RegExp('^[a-z0-9._-#@{(^=+-*/%§?!)}]+$');
-//let resultUserPassword = checkValidUserPassword.test(userPassword);
-//console.log(resultUserPassword);
-// gestion de l'evt submit
-const form = document.querySelector("form");
-form.addEventListener("submit", (event)=>{
-  event.preventDefault();
-  console.log("la page ne s'est pas rechargée")
-  if (userMail === "") {
-    console.log("userMail est vide");
-  } else {
-    console.log("userMail est rempli");
-  }
-  if (userPassword === "") {
-    console.log(userPassword.trim());
-  } else {
-    console.log("userPassword est rempli");
-  }
-});
-// prévenir user s'il y a une erreur
-// vérifier que user a le droit de se connecter,quel type de requête pour envoyer les infos?
-// stocker les infos de connexion
-// rediriger vers la page d'accueil en maintenant la connexion
-// stocker le token d'authentification pour pouvoir réaliser les envois et suppressions de travaux (= étape suivante)

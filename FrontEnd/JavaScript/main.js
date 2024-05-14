@@ -1,17 +1,20 @@
 //fonctions importées
-import { activateEditMode } from "./editPage.js";
+import { activateEditMode, deactivateEditMode } from "./editPage.js";
 //fonction pour faire apparaître la page par défaut
-function defaultIndexPage() {
+export function defaultIndexPage() {
   // fonction pour créer les cadres des photos
   function createCard(element) {
     let photoContainer = document.createElement("figure");
     let galleryImage = document.createElement("img");
     let photoLegend = document.createElement("figcaption");
     let parentContainer = document.getElementById("gallery");
+    let binIcon = document.createElement('i');
+    binIcon.classList.add('fa-solid','fa-trash-can','bin');
     photoLegend.innerText = element.title;
     parentContainer.appendChild(photoContainer);
     photoContainer.appendChild(galleryImage);
     photoContainer.appendChild(photoLegend);
+    photoContainer.appendChild(binIcon);
     galleryImage.setAttribute("src", element.imageUrl);
     galleryImage.setAttribute("alt", element.title);
   }
@@ -99,3 +102,5 @@ function defaultIndexPage() {
 defaultIndexPage();
 
 activateEditMode();
+
+deactivateEditMode();

@@ -235,6 +235,15 @@ button:not(.validation-button, .edit-button):hover {
 	width: 100%;
 
 }
+.bin{
+	color: white;
+	background-color: black;
+	width: 17px;
+	height: 17px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 #contact {
 	width: 50%;
 	margin: auto;
@@ -368,8 +377,8 @@ footer{
 	background-color: transparent;
 	border: none;
 	margin: 4%;
-  }
-  h3{
+}
+h3{
 	  font-weight: 400;
 	  font-family: 'Work Sans';
 	  font-size: 26px;
@@ -391,6 +400,7 @@ justify-content: center;*/
 font-weight: 700;
 font-family: 'Syne';
 font-size: 14px;
+cursor: pointer;
 }
 /*modale avec formulaire pour ajouter une photo*/
 .edit-photo-container {

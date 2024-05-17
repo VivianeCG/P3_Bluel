@@ -1,5 +1,5 @@
 //fonctions importées
-import { activateEditMode, deactivateEditMode } from "./editPage.js";
+import { activateEditMode, deactivateEditMode, openModal, closeModal } from "./editPage.js";
 // fonction pour créer les cadres des photos
 export function createCard(element) {
   let photoContainer = document.createElement("figure");
@@ -109,3 +109,7 @@ export function defaultIndexPage() {
 activateEditMode();
 
 deactivateEditMode();
+
+openModal();
+
+closeModal();

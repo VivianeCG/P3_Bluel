@@ -53,7 +53,11 @@ export function closeModal() {
 }
 closeModal();
 //montrer les photos dans la 1e modale
-
+export function showGalleryInModal() {
+  const galleryInModal = document.querySelector(".edit-photo-container");
+  createCard();
+  createFigure();
+}
 //supprimer une photo de la 1e modale
 
 //passage de la 2e modale à la 1re au clic sur la flèche

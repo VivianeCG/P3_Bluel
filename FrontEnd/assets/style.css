@@ -357,6 +357,9 @@ footer{
 	z-index: 1;
 	display: none;
 }
+.modal-container.active{
+	display: block;
+}
 .edit-gallery, .edit-add-photo {
 	position: absolute;
 	width: 630px;

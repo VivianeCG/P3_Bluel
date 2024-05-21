@@ -26,38 +26,24 @@ export function deactivateEditMode() {
 }
 
 const modalWindow = document.querySelector(".modal-container");
+const modalTriggers = document.querySelectorAll(".trigger-modal");
+
 //apparition et disparition de la modale
-function toggleModal() {
-  if (modalWindow.style.display === "none") {
-    modalWindow.style.display = "block";
-  } else {
-    modalWindow.style.display = "none";
+
+export function openCLoseModal() {
+  modalTriggers.forEach(trigger => trigger.addEventListener("click",toggleModal))
+  function toggleModal() {
+    modalWindow.classList.toggle("active")
   }
 }
-//faire apparaître la modale au clic sur le bouton modifier
-export function openModal() {
-  document.getElementById("edit-button").addEventListener("click", (event) => {
-    event.preventDefault();
-    toggleModal();
-    console.log(modalWindow);
-  });
-}
-openModal();
-//fermeture de la modale au clic sur la croix ou sur l'overlay
-//ne marche pas 
-export function closeModal() {
-  document.querySelector(".trigger-modal").addEventListener("click", (event) => {
-      event.preventDefault();
-      toggleModal();
-    });
-}
-closeModal();
 //montrer les photos dans la 1e modale
+
 export function showGalleryInModal() {
   const galleryInModal = document.querySelector(".edit-photo-container");
   createCard();
   createFigure();
 }
+
 //supprimer une photo de la 1e modale
 
 //passage de la 2e modale à la 1re au clic sur la flèche

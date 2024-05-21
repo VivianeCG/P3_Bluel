@@ -415,7 +415,7 @@ background-color: #1D6154;
 color: white;
 }
 /*modale avec formulaire pour ajouter une photo*/
-.edit-add-photo{
+.edit-add-photo.activated{
 	display: none;
 }
 .edit-photo-container {

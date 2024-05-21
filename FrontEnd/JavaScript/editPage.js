@@ -25,10 +25,9 @@ export function deactivateEditMode() {
   });
 }
 
+//apparition et disparition de la modale
 const modalWindow = document.querySelector(".modal-container");
 const modalTriggers = document.querySelectorAll(".trigger-modal");
-
-//apparition et disparition de la modale
 
 export function openCLoseModal() {
   modalTriggers.forEach(trigger => trigger.addEventListener("click",toggleModal))
@@ -46,6 +45,15 @@ export function showGalleryInModal() {
 
 //supprimer une photo de la 1e modale
 
+//passage de la 1e modale à la 2e au clic sur ajouter une photo
+const secondModal= document.querySelector(".edit-add-photo");
+const betweenModals = document.querySelectorAll(".change-modal");
+export function exchangeModalPage() {
+  betweenModals.forEach(trigger => trigger.addEventListener("click",toggleModal2))
+  function toggleModal2() {
+    secondModal.classList.toggle("activated")
+  }
+}
 //passage de la 2e modale à la 1re au clic sur la flèche
 
 //intégrer les différentes catégories dans le formulaire de la 2e modale

@@ -1,5 +1,5 @@
 //fonctions importées
-import { activateEditMode, deactivateEditMode, openCLoseModal, showGalleryInModal, exchangeModalPage} from "./editPage.js";
+import { activateEditMode, deactivateEditMode, openModal, closeModal, showGalleryInModal, exchangeModalPage} from "./editPage.js";
 // fonction pour créer les cadres des photos
 export function createCard(element) {
   let photoContainer = document.createElement("figure");
@@ -7,12 +7,10 @@ export function createCard(element) {
   let photoLegend = document.createElement("figcaption");
   let parentContainer = document.getElementById("gallery");
   let binIcon = document.createElement("i");
-  binIcon.classList.add("fa-solid", "fa-trash-can", "bin");
   photoLegend.innerText = element.title;
   parentContainer.appendChild(photoContainer);
   photoContainer.appendChild(galleryImage);
   photoContainer.appendChild(photoLegend);
-  photoContainer.appendChild(binIcon);
   galleryImage.setAttribute("src", element.imageUrl);
   galleryImage.setAttribute("alt", element.title);
 }
@@ -110,8 +108,10 @@ activateEditMode();
 
 deactivateEditMode();
 
-openCLoseModal();
+openModal();
 
-//showGalleryInModal();
+closeModal();
+
+showGalleryInModal();
 
 exchangeModalPage();

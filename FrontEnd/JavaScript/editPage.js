@@ -1,9 +1,4 @@
-import {
-  defaultIndexPage,
-  createCard,
-  createFigure,
-  createButton,
-} from "./main.js";
+import {createButton} from "./main.js";
 //fonction pour lancer l'apparence du mode édition
 export function activateEditMode() {
   document.getElementById("edit").style.display = "flex";
@@ -12,7 +7,7 @@ export function activateEditMode() {
   document.getElementById("logout").style.display = "flex";
   console.log("fonction activateEditMode");
 }
-//activateEditMode();
+
 //fonction pour le retour à l'apparence normale au clic sur logout
 export function deactivateEditMode() {
   document.getElementById("logout").addEventListener("click", (event) => {
@@ -27,25 +22,47 @@ export function deactivateEditMode() {
 
 //apparition et disparition de la modale
 const modalWindow = document.querySelector(".modal-container");
-const modalTriggers = document.querySelectorAll(".trigger-modal");
-
-export function openCLoseModal() {
-  modalTriggers.forEach(trigger => trigger.addEventListener("click",toggleModal))
-  function toggleModal() {
-    modalWindow.classList.toggle("active")
-  }
+export function openModal() {
+  const editButton = document.getElementById("edit-button");
+  editButton.addEventListener("click", ()=>{
+    modalWindow.style.display = 'block'; 
+  })
 }
-//montrer les photos dans la 1e modale
+export function closeModal() {
+  const modalTriggers = document.querySelectorAll(".trigger-modal");
+  modalTriggers.forEach(trigger => trigger.addEventListener("click", ()=>{
+  modalWindow.style.display = 'none';
+  }))
+}
 
+//montrer les photos dans la 1e modale
 export function showGalleryInModal() {
-  const galleryInModal = document.querySelector(".edit-photo-container");
-  createCard();
-  createFigure();
+  const url = "http://localhost:5678/api/works";
+  //pour récupérer les travaux depuis le Backend
+  fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      data.forEach((element) => {
+        //pour créer les balises figures dans le html
+        const galleryInModal = document.querySelector(".edit-photo-container");
+        let photoContainer = document.createElement("figure");
+        let galleryImage = document.createElement("img");
+        let binIcon = document.createElement("i");
+        binIcon.classList.add("fa-solid", "fa-trash-can", "bin");
+        galleryInModal.appendChild(photoContainer);
+        photoContainer.appendChild(galleryImage);
+        photoContainer.appendChild(binIcon);
+        galleryImage.setAttribute("src", element.imageUrl);
+        //galleryImage.style.width = "50%";
+      });
+    });
 }
 
 //supprimer une photo de la 1e modale
 
-//passage de la 1e modale à la 2e au clic sur ajouter une photo
+//passage de la 1e modale à la 2e et vice-versa
 const secondModal= document.querySelector(".edit-add-photo");
 const betweenModals = document.querySelectorAll(".change-modal");
 export function exchangeModalPage() {
@@ -54,7 +71,6 @@ export function exchangeModalPage() {
     secondModal.classList.toggle("activated")
   }
 }
-//passage de la 2e modale à la 1re au clic sur la flèche
 
 //intégrer les différentes catégories dans le formulaire de la 2e modale
 

@@ -235,15 +235,6 @@ button:not(.validation-button,.edit-button,.modal-button):hover {
 	width: 100%;
 
 }
-.bin{
-	color: white;
-	background-color: black;
-	width: 17px;
-	height: 17px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
 #contact {
 	width: 50%;
 	margin: auto;
@@ -357,9 +348,6 @@ footer{
 	z-index: 1;
 	display: none;
 }
-.modal-container.active{
-	display: block;
-}
 .edit-gallery, .edit-add-photo {
 	position: absolute;
 	width: 630px;
@@ -414,11 +402,32 @@ border-radius: 60px;
 background-color: #1D6154;
 color: white;
 }
+.edit-photo-container{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.edit-photo-container img{
+	position: absolute;
+	width: 76px;
+}
+.bin{
+	color: white;
+	background-color: black;
+	width: 17px;
+	height: 17px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 2px;
+	position: relative;
+	margin-left: 54px;
+	margin-top: 7px;
+}
 /*modale avec formulaire pour ajouter une photo*/
 .edit-add-photo.activated{
 	display: none;
 }
-.edit-photo-container {
+.edit-photo-container, .file-drop-container {
 height: 431px;
 width: 420px;
 margin-left: 100px;

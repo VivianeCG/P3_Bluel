@@ -73,7 +73,27 @@ export function exchangeModalPage() {
 }
 
 //intégrer les différentes catégories dans le formulaire de la 2e modale
-
+export function optionsNamesInForm() {
+  const urlCategories = "http://localhost:5678/api/categories";
+  fetch(urlCategories)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      let numberId = 1;
+      data.forEach((element) => {
+        //pour créer les boutons des catégories avec leurs noms et id (sauf "Tous")
+        let categoryContainerDiv = document.getElementById("photo-legend");
+        let option = document.createElement("option");
+        option.setAttribute("id", "categorie" + numberId);
+        option.setAttribute("value", numberId);
+        numberId++;
+        categoryContainerDiv.appendChild(option);
+        option.innerHTML = element.name;
+        console.log(option);
+      });
+    });
+}
 //ajouter une photo via le formulaire de la 2e modale
 
 //le bouton valider ne doit être vert que si le formulaire est complet

@@ -4,8 +4,21 @@ import { activateEditMode } from "./editPage.js";
    async function test (event) {
       event.preventDefault();
 
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    let checkValidUserMail = new RegExp(
+      "[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+"
+    );
+    if (!checkValidUserMail.test(email)) {
+      alert("Erreur dans l'identifiant ou le mot de passe");
+      return;
+    }
+    let checkValidUserPassword = new RegExp("(?=.*[a-zA-Z])(?=.*\\d).{6,}");
+    if (!checkValidUserPassword.test(password)) {
+      alert("Erreur dans l'identifiant ou le mot de passe");
+      return;
+    }
 
       let checkValidUserMail = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+");
       if (!checkValidUserMail.test(email)) {
@@ -23,14 +36,14 @@ import { activateEditMode } from "./editPage.js";
           password: password
       };
 
-      // Configuration de la requête
-      const requestOptions = {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-      };
+    // Configuration de la requête
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
 
       // Envoi de la requête à l'API
       fetch('http://localhost:5678/api/users/login', requestOptions)

@@ -51,7 +51,6 @@ export function createButton() {
         numberId++;
         categoryContainerDiv.appendChild(button);
         button.innerHTML = element.name;
-        console.log(button);
       });
     });
 }
@@ -74,10 +73,10 @@ function filterWorks() {
               const parentContainer = document.getElementById("gallery");
               parentContainer.innerHTML = ""; //pour effacer le contenu précédent
               createFigure();
-              console.log("testTous");
+              //console.log("testTous");
             } else {
               createFilteredFigure(data, buttonValue);
-              console.log("testAutresBoutons");
+              //console.log("testAutresBoutons");
             }
           });
       }

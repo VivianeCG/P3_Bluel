@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
+import { activateEditMode } from "./editPage.js";
   const form = document.querySelector('.log-in');
-
-  form.addEventListener('submit', function(event) {
+  form.addEventListener('submit', test)
+   async function test (event) {
       event.preventDefault();
 
       const email = document.getElementById('email').value;
@@ -41,13 +41,15 @@ document.addEventListener('DOMContentLoaded', function() {
               return response.json();
           })
           .then(data => {
-              // Traitement de la réponse de l'API
-              console.log(data); 
-              // Redirection de l'utilisateur après la connexion réussie
+              //console.log(data); 
+              const token = data.token;
+              localStorage.setItem('token', token);
               window.location.href = '../index.html';
-          })
-          .catch(error => {
-              console.error('Erreur:', error);
-          });
-  });
-});
+              activateEditMode();
+              console.log('test');
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
+        };
+    

@@ -1,4 +1,3 @@
-import {createButton} from "./main.js";
 //fonction pour lancer l'apparence du mode édition
 export function activateEditMode() {
   document.getElementById("edit").style.display = "flex";
@@ -49,18 +48,24 @@ export function showGalleryInModal() {
         const galleryInModal = document.querySelector(".edit-photo-container");
         let photoContainer = document.createElement("figure");
         let galleryImage = document.createElement("img");
+        let binButton = document.createElement("button")
         let binIcon = document.createElement("i");
         binIcon.classList.add("fa-solid", "fa-trash-can", "bin");
+        binButton.classList.add("bin-button");
         galleryInModal.appendChild(photoContainer);
         photoContainer.appendChild(galleryImage);
-        photoContainer.appendChild(binIcon);
+        photoContainer.appendChild(binButton);
+        binButton.appendChild(binIcon);
         galleryImage.setAttribute("src", element.imageUrl);
-        //galleryImage.style.width = "50%";
       });
     });
 }
 
 //supprimer une photo de la 1e modale
+const deletePhoto = document.querySelector(".bin-button");
+//deletePhoto.addEventListener('click', ()=>{
+
+//})
 
 //passage de la 1e modale à la 2e et vice-versa
 const secondModal= document.querySelector(".edit-add-photo");
@@ -90,7 +95,6 @@ export function optionsNamesInForm() {
         numberId++;
         categoryContainerDiv.appendChild(option);
         option.innerHTML = element.name;
-        console.log(option);
       });
     });
 }

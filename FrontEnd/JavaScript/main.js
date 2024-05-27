@@ -102,8 +102,13 @@ export function defaultIndexPage() {
   createButton();
   filterWorks();
 }
+function connectedMode() {
+  if (localStorage.getItem('token')) {
+    activateEditMode();
+  }
+}
 
-activateEditMode();
+connectedMode();
 
 deactivateEditMode();
 

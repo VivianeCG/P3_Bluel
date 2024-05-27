@@ -44,12 +44,10 @@ import { activateEditMode } from "./editPage.js";
               return response.json();
           })
           .then(data => {
-              //console.log(data); 
+              console.log(data); 
               const token = data.token;
               localStorage.setItem('token', token);
               window.location.href = '../index.html';
-              activateEditMode();
-              console.log('test');
             })
             .catch(error => {
                 console.error('Erreur:', error);

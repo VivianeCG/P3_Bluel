@@ -52,6 +52,7 @@ body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 	background-color: #FFFEF8;
+	max-width: 1140px;
 }
 .main-container{
 	background-color: #FFFEF8;
@@ -60,6 +61,7 @@ body {
 	flex-direction: column;
 	justify-content: center;
 }
+/*en-tête en mode édition*/
 .edit {
 	font-size: 16px;
 	font-weight: 400;
@@ -83,7 +85,10 @@ body {
 }
 
 header {
-	margin: 50px 0;
+	margin: 50px;
+	display: flex;
+	justify-content: space-between;
+	
 }
 .header-wrapper {
 	display: flex;
@@ -93,21 +98,6 @@ header {
 }
 main{
 	width: 100%;
-}
-/*en-tête en mode édition*/
-.edit {
-	font-size: 16px;
-	font-weight: 400;
-	font-family: 'Work Sans';
-	background-color: black;
-	color: white;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 59px;
-}
-.edit p{
-	margin-left: 10px;
 }
 
 /*style général de la page*/

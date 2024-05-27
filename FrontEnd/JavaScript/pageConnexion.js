@@ -20,16 +20,6 @@ import { activateEditMode } from "./editPage.js";
       return;
     }
 
-      let checkValidUserMail = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+");
-      if (!checkValidUserMail.test(email)) {
-        alert("Erreur dans l'identifiant ou le mot de passe");
-        return;
-      }
-      let checkValidUserPassword = new RegExp("(?=.*[a-zA-Z])(?=.*\\d).{6,}");
-      if (!checkValidUserPassword.test(password)) {
-        alert("Erreur dans l'identifiant ou le mot de passe");
-        return;
-      }
       // Création des données à envoyer à l'API
       const data = {
           email: email,

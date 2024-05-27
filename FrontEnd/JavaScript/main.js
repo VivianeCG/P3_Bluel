@@ -17,7 +17,6 @@ export function createCard(element) {
 
 //fonction pour récupérer les photos lors de l'affichage de la page
 export function createFigure() {
-export function createFigure() {
   const url = "http://localhost:5678/api/works";
   //pour récupérer les travaux depuis le Backend
   fetch(url)

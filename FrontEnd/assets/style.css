@@ -68,7 +68,6 @@ body {
 	font-family: 'Work Sans';
 	background-color: black;
 	color: white;
-	/*display: flex;*/
 	justify-content: center;
 	align-items: center;
 	height: 59px;
@@ -375,8 +374,8 @@ footer{
 	height: 688px;
 	background-color: white;
 	border-radius: 10px;
-	/*left: 23%;
-	top: 25%;*/
+	left: 15%;
+	/*top: 25%;*/
 }
 /*modale présentant la gallerie photo pour la suppression*/
 .modal-button {
@@ -413,8 +412,6 @@ h3{
 .add-a-photo{ 
 padding: 2% 4% 2% 4%;
 width: 237px;
-/*display: flex;
-justify-content: center;*/
 font-weight: 700;
 font-family: 'Syne';
 font-size: 14px;

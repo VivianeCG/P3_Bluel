@@ -1,4 +1,3 @@
-import { activateEditMode } from "./editPage.js";
   const form = document.querySelector('.log-in');
   form.addEventListener('submit', test)
    async function test (event) {

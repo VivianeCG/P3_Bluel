@@ -15,6 +15,7 @@ export function deactivateEditMode() {
     document.getElementById("edit-button").style.display = "none";
     document.getElementById("logout").style.display = "none";
     document.getElementById("login").style.display = "flex";
+    localStorage.removeItem("token");
     console.log("fonction deactivateEditMode");
   });
 }
@@ -23,8 +24,10 @@ export function deactivateEditMode() {
 const modalWindow = document.querySelector(".modal-container");
 export function openModal() {
   const editButton = document.getElementById("edit-button");
+  const editAddPhoto = document.querySelector(".edit-add-photo");
   editButton.addEventListener("click", ()=>{
     modalWindow.style.display = 'block'; 
+    editAddPhoto.style.display = 'none';
   })
 }
 export function closeModal() {
@@ -57,24 +60,29 @@ export function showGalleryInModal() {
         photoContainer.appendChild(binButton);
         binButton.appendChild(binIcon);
         galleryImage.setAttribute("src", element.imageUrl);
+        galleryImage.setAttribute("alt", element.title);
       });
     });
 }
 
 //supprimer une photo de la 1e modale
-const deletePhoto = document.querySelector(".bin-button");
-//deletePhoto.addEventListener('click', ()=>{
-
-//})
+const binButton = document.querySelector(".bin-button");
 
 //passage de la 1e modale à la 2e et vice-versa
 const secondModal= document.querySelector(".edit-add-photo");
-const betweenModals = document.querySelectorAll(".change-modal");
-export function exchangeModalPage() {
-  betweenModals.forEach(trigger => trigger.addEventListener("click",toggleModal2))
-  function toggleModal2() {
-    secondModal.classList.toggle("activated")
-  }
+const changeModal = document.querySelector(".change-modal");
+const arrow = document.querySelector(".back-arrow");
+
+export function openSecondModalPage() {
+  changeModal.addEventListener("click", ()=>{
+    secondModal.style.display = 'block';
+    secondModal.classList.toggle("activated");
+  })
+}
+export function backToFirstModal() {
+  arrow.addEventListener("click", ()=>{
+    secondModal.style.display = 'none';
+  })
 }
 
 //intégrer les différentes catégories dans le formulaire de la 2e modale

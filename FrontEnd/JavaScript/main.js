@@ -1,12 +1,20 @@
 //fonctions importées
-import { activateEditMode, deactivateEditMode, openModal, closeModal, showGalleryInModal, exchangeModalPage, optionsNamesInForm} from "./editPage.js";
+import {
+  activateEditMode,
+  deactivateEditMode,
+  openModal,
+  closeModal,
+  showGalleryInModal,
+  openSecondModalPage,
+  backToFirstModal,
+  optionsNamesInForm,
+} from "./editPage.js";
 // fonction pour créer les cadres des photos
 export function createCard(element) {
   let photoContainer = document.createElement("figure");
   let galleryImage = document.createElement("img");
   let photoLegend = document.createElement("figcaption");
   let parentContainer = document.getElementById("gallery");
-  let binIcon = document.createElement("i");
   photoLegend.innerText = element.title;
   parentContainer.appendChild(photoContainer);
   photoContainer.appendChild(galleryImage);
@@ -103,8 +111,10 @@ export function defaultIndexPage() {
   filterWorks();
 }
 function connectedMode() {
-  if (localStorage.getItem('token')) {
+  if (localStorage.getItem("token")) {
     activateEditMode();
+  } else {
+    deactivateEditMode();
   }
 }
 
@@ -118,6 +128,8 @@ closeModal();
 
 showGalleryInModal();
 
-exchangeModalPage();
+openSecondModalPage();
+
+backToFirstModal();
 
 optionsNamesInForm();

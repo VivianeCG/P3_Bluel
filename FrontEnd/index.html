@@ -41,7 +41,6 @@
 					</div>
 					<h3>Galerie photo</h3>
 					<div class="edit-photo-container ">
-
 					</div>
 					<div class="button-add-a-photo">
 					<button class="add-a-photo change-modal">Ajouter une photo</button>
@@ -56,7 +55,7 @@
 					<form id="form-add-works">
 					  	<div class="file-drop-container">
 							<div class="file-drop">
-						 		<input type="file" id="file-input" class="file-input" accept="image/*">
+						 		<input type="file" name="file-input" id="file-input" class="file-input" accept="image/*">
 						  		<label for="file-input" class="file-label">
 									<i class="fa-regular fa-image photo-icon"></i>
 									<span id="file-input-button"> + Ajouter photo</span>
@@ -67,12 +66,12 @@
 								<Legend class="form-legend">Titre</Legend>
 									<input type="text" name="photo-name" id="photo-name">
 								<legend class="form-legend">Catégorie</legend>
-									<select name="photo-legend" id="photo-legend">
+									<select name="photo-category" id="photo-category">
 										<option value="empty"></option>
 									</select>
 							</div>
 						</div>
-					  <button class="validation-button">Valider</button>
+					  <button type="submit" class="validation-button">Valider</button>
 					</form>
 				</div>
 			</div>

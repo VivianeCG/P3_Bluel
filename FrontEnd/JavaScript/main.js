@@ -8,6 +8,10 @@ import {
   openSecondModalPage,
   backToFirstModal,
   optionsNamesInForm,
+  listenerOnBinIcon,
+  deletePhoto,
+  listenerOnSubmitForm,
+  changeValidationButtonColor
 } from "./editPage.js";
 // fonction pour créer les cadres des photos
 export function createCard(element) {
@@ -24,8 +28,8 @@ export function createCard(element) {
 }
 
 //fonction pour récupérer les photos lors de l'affichage de la page
+export const url = "http://localhost:5678/api/works";
 export function createFigure() {
-  const url = "http://localhost:5678/api/works";
   //pour récupérer les travaux depuis le Backend
   fetch(url)
     .then(function (response) {
@@ -65,7 +69,6 @@ export function createButton() {
 createButton();
 //fonction pour filtrer les travaux "Tous" ou les autres catégories
 function filterWorks() {
-  const url = "http://localhost:5678/api/works";
   document
     .getElementById("filtres")
     .addEventListener("click", function (event) {
@@ -100,7 +103,7 @@ function createFilteredFigure(data, buttonValue) {
     }
   });
 }
-//createButton();
+
 filterWorks();
 
 //fonction pour faire apparaître la page par défaut
@@ -110,6 +113,7 @@ export function defaultIndexPage() {
   createButton();
   filterWorks();
 }
+//fonction pour lancer le mode édition après la connexion
 function connectedMode() {
   if (localStorage.getItem("token")) {
     activateEditMode();
@@ -133,3 +137,13 @@ openSecondModalPage();
 backToFirstModal();
 
 optionsNamesInForm();
+
+listenerOnBinIcon();
+
+//deletePhoto();
+
+//addWork();
+
+listenerOnSubmitForm();
+
+changeValidationButtonColor();

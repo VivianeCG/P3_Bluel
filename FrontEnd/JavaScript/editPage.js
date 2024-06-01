@@ -1,3 +1,4 @@
+import { url } from "./main.js";
 //fonction pour lancer l'apparence du mode édition
 export function activateEditMode() {
   document.getElementById("edit").style.display = "flex";
@@ -65,9 +66,6 @@ export function showGalleryInModal() {
     });
 }
 
-//supprimer une photo de la 1e modale
-const binButton = document.querySelector(".bin-button");
-
 //passage de la 1e modale à la 2e et vice-versa
 const secondModal= document.querySelector(".edit-add-photo");
 const changeModal = document.querySelector(".change-modal");
@@ -96,7 +94,7 @@ export function optionsNamesInForm() {
       let numberId = 1;
       data.forEach((element) => {
         //pour créer les boutons des catégories avec leurs noms et id (sauf "Tous")
-        let categoryContainerDiv = document.getElementById("photo-legend");
+        let categoryContainerDiv = document.getElementById("photo-category");
         let option = document.createElement("option");
         option.setAttribute("id", "categorie" + numberId);
         option.setAttribute("value", numberId);
@@ -106,6 +104,96 @@ export function optionsNamesInForm() {
       });
     });
 }
+
+//récupération du token pour l'ajout et la suppression de travaux
+export const token = localStorage.getItem("token");
+console.log(token);
+//supprimer une photo de la 1e modale
+export function listenerOnBinIcon() {
+  const binButtons = document.querySelectorAll(".bin-button");
+  binButtons.forEach(button =>{
+    button.addEventListener("click", (data) => {
+      const photoId = element.target.getAttribute(data.id);
+      console.log("bouton cliqué")
+      deletePhoto();
+    })
+  })
+}
+
+export function deletePhoto() {
+  try {
+    const urlPhoto = `${url}/${id}`;
+    console.log(urlPhoto);
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    };
+    fetch(urlPhoto, requestOptions)
+    .then(response => {
+      if (!response.ok) {
+          throw new Error('Failed attempt');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      showGalleryInModal();
+    })
+
+  } catch (Error) {
+    console.log("Erreur lors du lancement de la fonction");
+  }
+}
 //ajouter une photo via le formulaire de la 2e modale
+let form = document.getElementById("form-add-works");
+
+export function changeValidationButtonColor() {
+    let photoFile = document.getElementById("file-input");
+    let fileTitle = document.getElementById("photo-name").value;
+    let fileCategory = document.getElementById("photo-category").value;
+    let button = document.querySelector(".validation-button");
+    if (fileTitle.trim() !=="" && fileCategory !== "") {
+      console.log(button);
+      button.setAttribute("style", "background-color: rgb(29, 97, 84);");
+    }
+}
+export function listenerOnSubmitForm() {
+    form.addEventListener("submit", (event)=> {
+    event.preventDefault();
+    const formdata = new FormData(form);
+      formdata.forEach((value, key) => {
+        console.log(key, value);
+    });
+    
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+        body: formdata
+      };
+      fetch(url, requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          console.error('Erreur du serveur:', errorData);
+            throw new Error('Your request failed'+ response.statusText);
+        }
+        return response.json();
+      })
+      .then(response => {
+        console.log(response);
+      
+      })
+    })
+}
+
+
+
+    //formdata.append("photo-name", fileTitle);
+    //formdata.append("photo-category", fileCategory);
+    //formdata.append("file-input", photoFile.files[0]);
 
 //le bouton valider ne doit être vert que si le formulaire est complet

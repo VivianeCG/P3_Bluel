@@ -52,7 +52,7 @@
 						 <button class="trigger-modal modal-button">X</button>
 					</div>
 					<h3>Ajout photo</h3>
-					<form id="form-add-works">
+					<form id="form-add-works" method="post" action="http://localhost:5678/api/works" enctype="multipart/form-data">
 					  	<div class="file-drop-container">
 							<div class="file-drop">
 						 		<input type="file" name="file-input" id="file-input" class="file-input" accept="image/*">

@@ -146,4 +146,4 @@ listenerOnBinIcon();
 
 listenerOnSubmitForm();
 
-changeValidationButtonColor();
+//changeValidationButtonColor();

@@ -62,6 +62,7 @@ export function showGalleryInModal() {
         binButton.appendChild(binIcon);
         galleryImage.setAttribute("src", element.imageUrl);
         galleryImage.setAttribute("alt", element.title);
+        binButton.setAttribute("data-id", element.id);
       });
     });
 }
@@ -112,16 +113,15 @@ console.log(token);
 export function listenerOnBinIcon() {
   const binButtons = document.querySelectorAll(".bin-button");
   binButtons.forEach(button =>{
-    button.addEventListener("click", (data) => {
-      const photoId = element.target.getAttribute(data.id);
-      console.log("bouton cliqué")
-      deletePhoto();
+    button.addEventListener("click", (event) => {
+      const photoId = event.target.getAttribute('data-id');
+      console.log("bouton cliqué", photoId)
+      deletePhoto(photoId);
     })
   })
 }
 
-export function deletePhoto() {
-  try {
+export function deletePhoto(id) {
     const urlPhoto = `${url}/${id}`;
     console.log(urlPhoto);
     const requestOptions = {
@@ -142,24 +142,41 @@ export function deletePhoto() {
       console.log(data);
       showGalleryInModal();
     })
-
-  } catch (Error) {
-    console.log("Erreur lors du lancement de la fonction");
-  }
+    .catch(error => {
+      console.log("Erreur lors de la suppression de la photo :", error);
+    });
 }
 //ajouter une photo via le formulaire de la 2e modale
 let form = document.getElementById("form-add-works");
+let photoFile = document.getElementById("file-input");
+function photoFileConditions() {
+    const maxSize = 4 * 1024 * 1024; 
+    const validTypes = ['image/jpeg', 'image/png'];
 
+    if (photoFile.size > maxSize) {
+        alert("Le fichier ne doit pas dépasser 4 Mo.");
+        return;
+    }
+
+    if (!validTypes.includes(photoFile.type)) {
+        alert("Le fichier doit être au format JPG ou PNG.");
+        return;
+    }
+}
 export function changeValidationButtonColor() {
-    let photoFile = document.getElementById("file-input");
     let fileTitle = document.getElementById("photo-name").value;
     let fileCategory = document.getElementById("photo-category").value;
     let button = document.querySelector(".validation-button");
     if (fileTitle.trim() !=="" && fileCategory !== "") {
-      console.log(button);
+      console.log("condition");
       button.setAttribute("style", "background-color: rgb(29, 97, 84);");
     }
+    else{
+      button.setAttribute("style", "background-color : #a7a7a7");
+      console.log("else");
+    }
 }
+
 export function listenerOnSubmitForm() {
     form.addEventListener("submit", (event)=> {
     event.preventDefault();
@@ -167,7 +184,6 @@ export function listenerOnSubmitForm() {
       formdata.forEach((value, key) => {
         console.log(key, value);
     });
-    
       const requestOptions = {
         method: "POST",
         headers: {
@@ -178,8 +194,7 @@ export function listenerOnSubmitForm() {
       fetch(url, requestOptions)
       .then(response => {
         if (!response.ok) {
-          console.error('Erreur du serveur:', errorData);
-            throw new Error('Your request failed'+ response.statusText);
+          throw new Error('Your request failed'+ response.statusText);
         }
         return response.json();
       })
@@ -195,5 +210,3 @@ export function listenerOnSubmitForm() {
     //formdata.append("photo-name", fileTitle);
     //formdata.append("photo-category", fileCategory);
     //formdata.append("file-input", photoFile.files[0]);
-
-//le bouton valider ne doit être vert que si le formulaire est complet

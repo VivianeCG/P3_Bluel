@@ -163,11 +163,11 @@ function photoFileConditions() {
         return;
     }
 }
+let title = document.getElementById("photo-name").value;
+let category = document.getElementById("photo-category").value;
 export function changeValidationButtonColor() {
-    let fileTitle = document.getElementById("photo-name").value;
-    let fileCategory = document.getElementById("photo-category").value;
     let button = document.querySelector(".validation-button");
-    if (fileTitle.trim() !=="" && fileCategory !== "") {
+    if (title.trim() !=="" && category !== "") {
       console.log("condition");
       button.setAttribute("style", "background-color: rgb(29, 97, 84);");
     }
@@ -176,14 +176,14 @@ export function changeValidationButtonColor() {
       console.log("else");
     }
 }
-
+// fetch et listener sur le formulaire
 export function listenerOnSubmitForm() {
     form.addEventListener("submit", (event)=> {
     event.preventDefault();
-    const formdata = new FormData(form);
-      formdata.forEach((value, key) => {
-        console.log(key, value);
-    });
+    const formdata = new FormData();
+    formdata.append("title", title);
+    formdata.append("category", category);
+    formdata.append("image", photoFile.files[0]);
       const requestOptions = {
         method: "POST",
         headers: {
@@ -196,7 +196,8 @@ export function listenerOnSubmitForm() {
         if (!response.ok) {
           throw new Error('Your request failed'+ response.statusText);
         }
-        return response.json();
+       // return response.json();
+        return response.push(formdata);
       })
       .then(response => {
         console.log(response);
@@ -206,7 +207,3 @@ export function listenerOnSubmitForm() {
 }
 
 
-
-    //formdata.append("photo-name", fileTitle);
-    //formdata.append("photo-category", fileCategory);
-    //formdata.append("file-input", photoFile.files[0]);

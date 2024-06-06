@@ -64,6 +64,7 @@ export function showGalleryInModal() {
         galleryImage.setAttribute("alt", element.title);
         binButton.setAttribute("data-id", element.id);
       });
+      listenerOnBinIcon();
     });
 }
 
@@ -110,19 +111,23 @@ export function optionsNamesInForm() {
 export const token = localStorage.getItem("token");
 console.log(token);
 //supprimer une photo de la 1e modale
-export function listenerOnBinIcon() {
+let photoId = document.querySelector("data-id");
+function listenerOnBinIcon() {
   const binButtons = document.querySelectorAll(".bin-button");
   binButtons.forEach(button =>{
     button.addEventListener("click", (event) => {
-      const photoId = event.target.getAttribute('data-id');
+      event.preventDefault();
+      photoId = event.target.closest(".bin-button").getAttribute('data-id');
       console.log("bouton cliqué", photoId)
-      deletePhoto(photoId);
+      if (photoId) {
+        deletePhoto(photoId);
+      }
     })
   })
 }
-
-export function deletePhoto(id) {
-    const urlPhoto = `${url}/${id}`;
+//fonction pour supprimer une photo de la galerie
+function deletePhoto(photoId) {
+    const urlPhoto = `${url}/${photoId}`;
     console.log(urlPhoto);
     const requestOptions = {
       method: "DELETE",
@@ -132,15 +137,12 @@ export function deletePhoto(id) {
       },
     };
     fetch(urlPhoto, requestOptions)
-    .then(response => {
-      if (!response.ok) {
-          throw new Error('Failed attempt');
+    .then (response => {
+      if (response.ok) {
+        console.log ("ressource supprimée avec succès");
+      } else {
+        console.error("erreur lors de la suppression de la ressource: ", response.status);
       }
-      return response.json();
-    })
-    .then(data => {
-      console.log(data);
-      showGalleryInModal();
     })
     .catch(error => {
       console.log("Erreur lors de la suppression de la photo :", error);

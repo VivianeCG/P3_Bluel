@@ -8,8 +8,6 @@ import {
   openSecondModalPage,
   backToFirstModal,
   optionsNamesInForm,
-  listenerOnBinIcon,
-  deletePhoto,
   listenerOnSubmitForm,
   changeValidationButtonColor
 } from "./editPage.js";
@@ -138,7 +136,7 @@ backToFirstModal();
 
 optionsNamesInForm();
 
-listenerOnBinIcon();
+//listenerOnBinIcon();
 
 //deletePhoto();
 

@@ -9,7 +9,8 @@ import {
   backToFirstModal,
   optionsNamesInForm,
   listenerOnSubmitForm,
-  changeValidationButtonColor
+  listenersOnFormInput,
+  updatePhotoPreview
 } from "./editPage.js";
 // fonction pour créer les cadres des photos
 export function createCard(element) {
@@ -136,12 +137,8 @@ backToFirstModal();
 
 optionsNamesInForm();
 
-//listenerOnBinIcon();
-
-//deletePhoto();
-
-//addWork();
-
 listenerOnSubmitForm();
 
-//changeValidationButtonColor();
+listenersOnFormInput();
+
+updatePhotoPreview();

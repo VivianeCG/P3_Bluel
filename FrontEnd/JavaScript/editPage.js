@@ -149,39 +149,75 @@ function deletePhoto(photoId) {
     });
 }
 //ajouter une photo via le formulaire de la 2e modale
-let form = document.getElementById("form-add-works");
-let photoFile = document.getElementById("file-input");
+const form = document.getElementById("form-add-works");
+const photoFile = document.getElementById("file-input");
+const titleForm = document.getElementById("photo-name");
+const categoryForm = document.getElementById("photo-category");
+
+export function updatePhotoPreview() {
+  const photoPreview = document.getElementById("photo-preview");
+  const file = photoFile.files[0];
+  const label = document.querySelector(".file-label");
+  if (file) {
+    const reader = new FileReader(); //lis les données des objets
+    reader.onload = function(e) {
+      photoPreview.src = e.target.result;
+      photoPreview.style.display = 'block';
+      label.style.display = 'none';
+    };
+    reader.readAsDataURL(file); // lit les données binaires et les encode en base64 comme URL de données.
+    // choix de cette méhode:  quand nous utilisons ces données dans src pour img ou une autre balise. 
+  } else {
+    photoPreview.style.display = 'none';
+  }
+  changeValidationButtonColor(); // Vérifier les conditions de validation du bouton en même temps
+}
+
 function photoFileConditions() {
-    const maxSize = 4 * 1024 * 1024; 
-    const validTypes = ['image/jpeg', 'image/png'];
-
-    if (photoFile.size > maxSize) {
+  const file = photoFile.files[0];
+  const maxSize = 4 * 1024 * 1024; 
+  const validTypes = ['image/jpeg', 'image/png'];
+  if (file){
+    if (file.size > maxSize) {
         alert("Le fichier ne doit pas dépasser 4 Mo.");
-        return;
+        return false;
     }
 
-    if (!validTypes.includes(photoFile.type)) {
+    if (!validTypes.includes(file.type)) {
         alert("Le fichier doit être au format JPG ou PNG.");
-        return;
+        return false;
     }
+  }
+  return true;
 }
-let title = document.getElementById("photo-name").value;
-let category = document.getElementById("photo-category").value;
+
 export function changeValidationButtonColor() {
-    let button = document.querySelector(".validation-button");
-    if (title.trim() !=="" && category !== "") {
-      console.log("condition");
-      button.setAttribute("style", "background-color: rgb(29, 97, 84);");
-    }
-    else{
-      button.setAttribute("style", "background-color : #a7a7a7");
-      console.log("else");
-    }
+    const button = document.querySelector(".validation-button");
+    const titleValue = titleForm.value.trim();
+    const fileValid = photoFile.files.length > 0 && photoFileConditions();
+    const categoryFormValue = categoryForm.value.trim();
+      if (categoryFormValue !== "" && titleValue !== "" && fileValid) {
+        button.style.backgroundColor = "rgb(29, 97, 84)";
+        button.disabled = false;
+      } else {
+        button.style.backgroundColor = "#a7a7a7";
+        button.disabled = true; //pour que le bouton soit désactivé si les conditions ne sont pas remplies
+      }
 }
-// fetch et listener sur le formulaire
+export function listenersOnFormInput() {   //passer la fonction sans parenthèses pour s'assurer qu'ils sont appelés lorsqu'un événement se produit 
+  photoFile.addEventListener("change",  updatePhotoPreview);
+  photoFile.addEventListener("change", changeValidationButtonColor);
+  titleForm.addEventListener("input",  changeValidationButtonColor);
+  categoryForm.addEventListener("change",  changeValidationButtonColor);
+}
+
+
+// fetch et listener sur le formulaire pour envoyer les données
 export function listenerOnSubmitForm() {
-    form.addEventListener("submit", (event)=> {
+  form.addEventListener("submit", (event)=> {
     event.preventDefault();
+    const title = document.getElementById("photo-name").value;
+    const category = document.getElementById("photo-category").value;
     const formdata = new FormData();
     formdata.append("title", title);
     formdata.append("category", category);
@@ -198,13 +234,16 @@ export function listenerOnSubmitForm() {
         if (!response.ok) {
           throw new Error('Your request failed'+ response.statusText);
         }
-       // return response.json();
-        return response.push(formdata);
+      return response.json();
+       //return response.push(formdata);
       })
       .then(response => {
         console.log(response);
       
       })
+      .catch(error => {
+        console.error('There was an error with your request:', error);
+      });
     })
 }
 

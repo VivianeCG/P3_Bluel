@@ -471,6 +471,11 @@ width: 420px;
 height: 424px;
 margin-left: 105px;
 }
+#photo-preview {
+display: none;
+max-width: 100px; 
+margin-top: 10px;
+}
 .validation-button{
 padding: 2% 4% 2% 4%;
 width: 237px;

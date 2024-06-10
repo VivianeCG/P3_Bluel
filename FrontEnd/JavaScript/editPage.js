@@ -188,7 +188,7 @@ export function changeValidationButtonColor() {
     const button = document.querySelector(".validation-button");
     const titleValue = titleForm.value.trim();
     const fileValid = photoFile.files.length > 0 && photoFileConditions();
-    const categoryFormValue = categoryForm.value.trim();
+    const categoryFormValue = categoryForm.value;
       if (categoryFormValue !== "" && titleValue !== "" && fileValid) {
         button.style.backgroundColor = "rgb(29, 97, 84)";
         button.disabled = false;

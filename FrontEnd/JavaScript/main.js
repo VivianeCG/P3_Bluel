@@ -13,7 +13,7 @@ import {
   updatePhotoPreview
 } from "./editPage.js";
 // fonction pour créer les cadres des photos
-export function createCard(element) {
+function createCard(element) {
   let photoContainer = document.createElement("figure");
   let galleryImage = document.createElement("img");
   let photoLegend = document.createElement("figcaption");
@@ -25,10 +25,9 @@ export function createCard(element) {
   galleryImage.setAttribute("src", element.imageUrl);
   galleryImage.setAttribute("alt", element.title);
 }
-
 //fonction pour récupérer les photos lors de l'affichage de la page
 export const url = "http://localhost:5678/api/works";
-export function createFigure() {
+function createFigure() {
   //pour récupérer les travaux depuis le Backend
   fetch(url)
     .then(function (response) {
@@ -42,9 +41,8 @@ export function createFigure() {
     });
 }
 createFigure();
-
 //fonction pour créer les boutons des différentes catégories
-export function createButton() {
+function createButton() {
   const urlCategories = "http://localhost:5678/api/categories";
   fetch(urlCategories)
     .then(function (response) {
@@ -102,16 +100,7 @@ function createFilteredFigure(data, buttonValue) {
     }
   });
 }
-
 filterWorks();
-
-//fonction pour faire apparaître la page par défaut
-export function defaultIndexPage() {
-  createCard();
-  createFigure();
-  createButton();
-  filterWorks();
-}
 //fonction pour lancer le mode édition après la connexion
 function connectedMode() {
   if (localStorage.getItem("token")) {
@@ -120,7 +109,7 @@ function connectedMode() {
     deactivateEditMode();
   }
 }
-
+//lancement des différentes fonctions nécessaires dans le mode édition
 connectedMode();
 
 deactivateEditMode();

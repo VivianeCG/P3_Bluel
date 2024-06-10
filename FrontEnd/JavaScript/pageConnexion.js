@@ -2,10 +2,8 @@
   form.addEventListener('submit', test)
    async function test (event) {
       event.preventDefault();
-
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-
     let checkValidUserMail = new RegExp(
       "[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+"
     );
@@ -18,13 +16,11 @@
       alert("Erreur dans l'identifiant ou le mot de passe");
       return;
     }
-
       // Création des données à envoyer à l'API
       const data = {
           email: email,
           password: password
       };
-
     // Configuration de la requête
     const requestOptions = {
       method: "POST",
@@ -33,7 +29,6 @@
       },
       body: JSON.stringify(data),
     };
-
       // Envoi de la requête à l'API
       fetch('http://localhost:5678/api/users/login', requestOptions)
           .then(response => {

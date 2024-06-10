@@ -7,7 +7,6 @@ export function activateEditMode() {
   document.getElementById("logout").style.display = "flex";
   console.log("fonction activateEditMode");
 }
-
 //fonction pour le retour à l'apparence normale au clic sur logout
 export function deactivateEditMode() {
   document.getElementById("logout").addEventListener("click", (event) => {
@@ -20,7 +19,6 @@ export function deactivateEditMode() {
     console.log("fonction deactivateEditMode");
   });
 }
-
 //apparition et disparition de la modale
 const modalWindow = document.querySelector(".modal-container");
 export function openModal() {
@@ -37,7 +35,6 @@ export function closeModal() {
   modalWindow.style.display = 'none';
   }))
 }
-
 //montrer les photos dans la 1e modale
 export function showGalleryInModal() {
   const url = "http://localhost:5678/api/works";
@@ -67,12 +64,10 @@ export function showGalleryInModal() {
       listenerOnBinIcon();
     });
 }
-
 //passage de la 1e modale à la 2e et vice-versa
 const secondModal= document.querySelector(".edit-add-photo");
 const changeModal = document.querySelector(".change-modal");
 const arrow = document.querySelector(".back-arrow");
-
 export function openSecondModalPage() {
   changeModal.addEventListener("click", ()=>{
     secondModal.style.display = 'block';
@@ -84,7 +79,6 @@ export function backToFirstModal() {
     secondModal.style.display = 'none';
   })
 }
-
 //intégrer les différentes catégories dans le formulaire de la 2e modale
 export function optionsNamesInForm() {
   const urlCategories = "http://localhost:5678/api/categories";
@@ -106,7 +100,6 @@ export function optionsNamesInForm() {
       });
     });
 }
-
 //récupération du token pour l'ajout et la suppression de travaux
 export const token = localStorage.getItem("token");
 console.log(token);
@@ -153,7 +146,7 @@ const form = document.getElementById("form-add-works");
 const photoFile = document.getElementById("file-input");
 const titleForm = document.getElementById("photo-name");
 const categoryForm = document.getElementById("photo-category");
-
+//avoir un aperçu de la photo avant validation
 export function updatePhotoPreview() {
   const photoPreview = document.getElementById("photo-preview");
   const file = photoFile.files[0];
@@ -172,7 +165,7 @@ export function updatePhotoPreview() {
   }
   changeValidationButtonColor(); // Vérifier les conditions de validation du bouton en même temps
 }
-
+//conditions pour qu'une photo puisse être envoyée
 function photoFileConditions() {
   const file = photoFile.files[0];
   const maxSize = 4 * 1024 * 1024; 
@@ -190,7 +183,7 @@ function photoFileConditions() {
   }
   return true;
 }
-
+//chengement de la couleur du bouton "valider" dans le formulaire
 export function changeValidationButtonColor() {
     const button = document.querySelector(".validation-button");
     const titleValue = titleForm.value.trim();
@@ -204,24 +197,26 @@ export function changeValidationButtonColor() {
         button.disabled = true; //pour que le bouton soit désactivé si les conditions ne sont pas remplies
       }
 }
-export function listenersOnFormInput() {   //passer la fonction sans parenthèses pour s'assurer qu'ils sont appelés lorsqu'un événement se produit 
+//écouteurs d'événements pour lancer les fonctions updatePhotoPreview et changeValidationButtonColor
+export function listenersOnFormInput() { 
+  //passer la fonction sans parenthèses dans le listener pour s'assurer qu'ils sont appelés lorsqu'un événement se produit 
   photoFile.addEventListener("change",  updatePhotoPreview);
   photoFile.addEventListener("change", changeValidationButtonColor);
   titleForm.addEventListener("input",  changeValidationButtonColor);
   categoryForm.addEventListener("change",  changeValidationButtonColor);
 }
-
-
 // fetch et listener sur le formulaire pour envoyer les données
 export function listenerOnSubmitForm() {
   form.addEventListener("submit", (event)=> {
     event.preventDefault();
+    //récupération des éléments à envoyer dans le formulaire
     const title = document.getElementById("photo-name").value;
     const category = document.getElementById("photo-category").value;
     const formdata = new FormData();
     formdata.append("title", title);
     formdata.append("category", category);
     formdata.append("image", photoFile.files[0]);
+     // Configuration de la requête
       const requestOptions = {
         method: "POST",
         headers: {
@@ -229,6 +224,7 @@ export function listenerOnSubmitForm() {
         },
         body: formdata
       };
+      // Envoi de la requête à l'API
       fetch(url, requestOptions)
       .then(response => {
         if (!response.ok) {

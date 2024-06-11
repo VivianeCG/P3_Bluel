@@ -5,6 +5,8 @@ export function activateEditMode() {
   document.getElementById("edit-button").style.display = "flex";
   document.getElementById("login").style.display = "none";
   document.getElementById("logout").style.display = "flex";
+  document.getElementById("filtres").style.display = "none";
+  document.getElementById("gallery").style.marginTop = "3em";
   console.log("fonction activateEditMode");
 }
 //fonction pour le retour à l'apparence normale au clic sur logout
@@ -15,6 +17,7 @@ export function deactivateEditMode() {
     document.getElementById("edit-button").style.display = "none";
     document.getElementById("logout").style.display = "none";
     document.getElementById("login").style.display = "flex";
+    document.getElementById("filtres").style.display = "flex";
     localStorage.removeItem("token");
     console.log("fonction deactivateEditMode");
   });

@@ -1,9 +1,10 @@
   const form = document.querySelector('.log-in');
   form.addEventListener('submit', test)
    async function test (event) {
-      event.preventDefault();
+    event.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
+    //vérification de la validité de l'adresse e-mail saisie
     let checkValidUserMail = new RegExp(
       "[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+"
     );
@@ -11,16 +12,17 @@
       alert("Erreur dans l'identifiant ou le mot de passe");
       return;
     }
+    //vérification de la validité du mot de passe saisi
     let checkValidUserPassword = new RegExp("(?=.*[a-zA-Z])(?=.*\\d).{6,}");
     if (!checkValidUserPassword.test(password)) {
       alert("Erreur dans l'identifiant ou le mot de passe");
       return;
     }
-      // Création des données à envoyer à l'API
-      const data = {
-          email: email,
-          password: password
-      };
+    // Création des données à envoyer à l'API
+    const data = {
+      email: email,
+      password: password
+    };
     // Configuration de la requête
     const requestOptions = {
       method: "POST",
@@ -43,8 +45,8 @@
               localStorage.setItem('token', token);
               window.location.href = '../index.html';
             })
-            .catch(error => {
-                console.error('Erreur:', error);
-            });
+          .catch(error => {
+              console.error('Erreur:', error);
+          });
         };
     

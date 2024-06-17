@@ -92,7 +92,7 @@ export function optionsNamesInForm() {
     .then(function (data) {
       let numberId = 1;
       data.forEach((element) => {
-        //pour créer les boutons des catégories avec leurs noms et id (sauf "Tous")
+        //pour créer les catégories avec leurs noms et id 
         let categoryContainerDiv = document.getElementById("photo-category");
         let option = document.createElement("option");
         option.setAttribute("id", "categorie" + numberId);
@@ -162,7 +162,6 @@ export function updatePhotoPreview() {
       label.style.display = 'none';
     };
     reader.readAsDataURL(file); // lit les données binaires et les encode en base64 comme URL de données.
-    // choix de cette méhode:  quand nous utilisons ces données dans src pour img ou une autre balise. 
   } else {
     photoPreview.style.display = 'none';
   }
@@ -186,7 +185,7 @@ function photoFileConditions() {
   }
   return true;
 }
-//chengement de la couleur du bouton "valider" dans le formulaire
+//changement de la couleur du bouton "valider" dans le formulaire
 export function changeValidationButtonColor() {
     const button = document.querySelector(".validation-button");
     const titleValue = titleForm.value.trim();
@@ -197,12 +196,11 @@ export function changeValidationButtonColor() {
         button.disabled = false;
       } else {
         button.style.backgroundColor = "#a7a7a7";
-        button.disabled = true; //pour que le bouton soit désactivé si les conditions ne sont pas remplies
+        button.disabled = true; //pour que le bouton soit désactivé et de couleur grise si les conditions ne sont pas remplies
       }
 }
 //écouteurs d'événements pour lancer les fonctions updatePhotoPreview et changeValidationButtonColor
 export function listenersOnFormInput() { 
-  //passer la fonction sans parenthèses dans le listener pour s'assurer qu'ils sont appelés lorsqu'un événement se produit 
   photoFile.addEventListener("change",  updatePhotoPreview);
   photoFile.addEventListener("change", changeValidationButtonColor);
   titleForm.addEventListener("input",  changeValidationButtonColor);
@@ -234,7 +232,6 @@ export function listenerOnSubmitForm() {
           throw new Error('Your request failed'+ response.statusText);
         }
       return response.json();
-       //return response.push(formdata);
       })
       .then(response => {
         console.log(response);

@@ -12,7 +12,7 @@ import {
   listenersOnFormInput,
   updatePhotoPreview
 } from "./editPage.js";
-// fonction pour créer les cadres des photos
+// fonction pour créer les balises figures contenant les photos
 function createCard(element) {
   let photoContainer = document.createElement("figure");
   let galleryImage = document.createElement("img");
@@ -51,7 +51,7 @@ function createButton() {
     .then(function (data) {
       let numberId = 1;
       data.forEach((element) => {
-        //pour créer les boutons des catégories avec leurs noms et id (sauf "Tous")
+        //pour créer les boutons des catégories avec leurs noms et id 
         let categoryContainerDiv = document.getElementById("filtres");
         let button = document.createElement("button");
         button.setAttribute("class", "categorie");
@@ -81,10 +81,8 @@ function filterWorks() {
               const parentContainer = document.getElementById("gallery");
               parentContainer.innerHTML = ""; //pour effacer le contenu précédent
               createFigure();
-              //console.log("testTous");
             } else {
               createFilteredFigure(data, buttonValue);
-              //console.log("testAutresBoutons");
             }
           });
       }

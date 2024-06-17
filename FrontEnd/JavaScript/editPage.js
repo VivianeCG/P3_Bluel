@@ -67,6 +67,46 @@ export function showGalleryInModal() {
       listenerOnBinIcon();
     });
 }
+//récupération du token pour l'ajout et la suppression de travaux
+export const token = localStorage.getItem("token");
+console.log(token);
+//supprimer une photo de la 1e modale
+let photoId = document.querySelector("data-id");
+function listenerOnBinIcon() {
+  const binButtons = document.querySelectorAll(".bin-button");
+  binButtons.forEach(button =>{
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      photoId = event.target.closest(".bin-button").getAttribute('data-id');
+      console.log("bouton cliqué", photoId)
+      if (photoId) {
+        deletePhoto(photoId);
+      }
+    })
+  })
+}
+//fonction pour supprimer une photo de la galerie
+function deletePhoto(photoId) {
+    const urlPhoto = `${url}/${photoId}`;
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    };
+    fetch(urlPhoto, requestOptions)
+    .then (response => {
+      if (response.ok) {
+        console.log ("ressource supprimée avec succès");
+      } else {
+        console.error("erreur lors de la suppression de la ressource: ", response.status);
+      }
+    })
+    .catch(error => {
+      console.log("Erreur lors de la suppression de la photo :", error);
+    });
+}
 //passage de la 1e modale à la 2e et vice-versa
 const secondModal= document.querySelector(".edit-add-photo");
 const changeModal = document.querySelector(".change-modal");
@@ -101,47 +141,6 @@ export function optionsNamesInForm() {
         categoryContainerDiv.appendChild(option);
         option.innerHTML = element.name;
       });
-    });
-}
-//récupération du token pour l'ajout et la suppression de travaux
-export const token = localStorage.getItem("token");
-console.log(token);
-//supprimer une photo de la 1e modale
-let photoId = document.querySelector("data-id");
-function listenerOnBinIcon() {
-  const binButtons = document.querySelectorAll(".bin-button");
-  binButtons.forEach(button =>{
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      photoId = event.target.closest(".bin-button").getAttribute('data-id');
-      console.log("bouton cliqué", photoId)
-      if (photoId) {
-        deletePhoto(photoId);
-      }
-    })
-  })
-}
-//fonction pour supprimer une photo de la galerie
-function deletePhoto(photoId) {
-    const urlPhoto = `${url}/${photoId}`;
-    console.log(urlPhoto);
-    const requestOptions = {
-      method: "DELETE",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
-    fetch(urlPhoto, requestOptions)
-    .then (response => {
-      if (response.ok) {
-        console.log ("ressource supprimée avec succès");
-      } else {
-        console.error("erreur lors de la suppression de la ressource: ", response.status);
-      }
-    })
-    .catch(error => {
-      console.log("Erreur lors de la suppression de la photo :", error);
     });
 }
 //ajouter une photo via le formulaire de la 2e modale

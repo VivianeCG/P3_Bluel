@@ -23,7 +23,6 @@
       email: email,
       password: password
     };
-    // Configuration de la requête
     const requestOptions = {
       method: "POST",
       headers: {
@@ -31,7 +30,6 @@
       },
       body: JSON.stringify(data),
     };
-      // Envoi de la requête à l'API
       fetch('http://localhost:5678/api/users/login', requestOptions)
           .then(response => {
               if (!response.ok) {
@@ -40,7 +38,6 @@
               return response.json();
           })
           .then(data => {
-              console.log(data); 
               const token = data.token;
               localStorage.setItem('token', token);
               window.location.href = '../index.html';

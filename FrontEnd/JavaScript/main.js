@@ -76,7 +76,6 @@ function filterWorks() {
             return response.json();
           })
           .then(function (data) {
-            console.log(event.target);
             if (buttonValue == 0) {
               const parentContainer = document.getElementById("gallery");
               parentContainer.innerHTML = ""; //pour effacer le contenu précédent

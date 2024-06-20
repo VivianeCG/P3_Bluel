@@ -41,7 +41,6 @@ export function closeModal() {
 //montrer les photos dans la 1e modale
 export function showGalleryInModal() {
   const url = "http://localhost:5678/api/works";
-  //pour récupérer les travaux depuis le Backend
   fetch(url)
     .then(function (response) {
       return response.json();
@@ -69,7 +68,6 @@ export function showGalleryInModal() {
 }
 //récupération du token pour l'ajout et la suppression de travaux
 export const token = localStorage.getItem("token");
-console.log(token);
 //supprimer une photo de la 1e modale
 let photoId = document.querySelector("data-id");
 function listenerOnBinIcon() {
@@ -78,7 +76,6 @@ function listenerOnBinIcon() {
     button.addEventListener("click", (event) => {
       event.preventDefault();
       photoId = event.target.closest(".bin-button").getAttribute('data-id');
-      console.log("bouton cliqué", photoId)
       if (photoId) {
         deletePhoto(photoId);
       }
@@ -154,13 +151,13 @@ export function updatePhotoPreview() {
   const file = photoFile.files[0];
   const label = document.querySelector(".file-label");
   if (file) {
-    const reader = new FileReader(); //lis les données des objets
+    const reader = new FileReader(); 
     reader.onload = function(e) {
       photoPreview.src = e.target.result;
       photoPreview.style.display = 'block';
       label.style.display = 'none';
     };
-    reader.readAsDataURL(file); // lit les données binaires et les encode en base64 comme URL de données.
+    reader.readAsDataURL(file); 
   } else {
     photoPreview.style.display = 'none';
   }
